@@ -1,3 +1,3 @@
-# {{cookiecutter.project_slug}}
+# {{cookiecutter.project_name}}
 
 {{cookiecutter.short_description}}

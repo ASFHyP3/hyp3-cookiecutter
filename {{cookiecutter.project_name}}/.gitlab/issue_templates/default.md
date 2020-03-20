@@ -4,6 +4,6 @@ NOTE: The ASF/Tools team is currently tracking HyP3 issues and development via t
 and issues should be opened there. 
 
 If this is an outside contribution, open an issue in our 
-[public GitHub repository](https://github.com/asfadmin/{{cookiecutter.project_slug}}/issues)
+[public GitHub repository](https://github.com/asfadmin/{{cookiecutter.project_name}}/issues)
 -->
 
