@@ -1,5 +1,6 @@
 {
   "project_name": "hyp3-plugin",
+  "project_title": "{{cookiecutter.project_name|replace('-', ' ')|replace('hyp3', 'HyP3')|title}}",
   "package_name": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
   "process_name": "{{cookiecutter.package_name|replace('hyp3', 'proc')}}",
   "process_type": "{{cookiecutter.package_name|replace('hyp3', '')|trim(chars='_')}}",

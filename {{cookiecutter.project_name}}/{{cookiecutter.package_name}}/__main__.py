@@ -1,9 +1,9 @@
 """
-AutoRIFT processing for HyP3
+{{cookiecutter.process_type}} processing for HyP3
 """
 
-import datetime
 import os
+from datetime import datetime
 
 import hyp3proclib
 from hyp3proclib.logger import log
@@ -49,6 +49,7 @@ def hyp3_process(cfg, n):
     hyp3proclib.file_system.cleanup_workdir(cfg)
 
     log.info('{{cookiecutter.process_type}} done')
+
 
 def main():
     """

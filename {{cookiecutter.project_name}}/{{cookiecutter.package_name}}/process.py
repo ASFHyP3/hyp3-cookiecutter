@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Processing with {{cookiecutter.package_name|replace('hyp3_', '')}}
+{{cookiecutter.process_type}} processing
 """
 
 import argparse

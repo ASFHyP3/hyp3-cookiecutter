@@ -2,7 +2,7 @@ FROM continuumio/miniconda3:4.7.12
 
 # For opencontainers label definitions, see:
 #    https://github.com/opencontainers/image-spec/blob/master/annotations.md
-LABEL org.opencontainers.image.title="{{cookiecutter.project_name|replace('-', ' ')|title}}"
+LABEL org.opencontainers.image.title="{{cookiecutter.project_title}}"
 LABEL org.opencontainers.image.description="{{cookiecutter.short_description}}"
 LABEL org.opencontainers.image.vendor="Alaska Satellite Facility"
 LABEL org.opencontainers.image.authors="ASF APD/Tools Team <uaf-asf-apd@alaska.edu>"
@@ -34,12 +34,12 @@ SHELL ["/bin/bash", "-l", "-c"]
 ENV PYTHONDONTWRITEBYTECODE=true
 WORKDIR /home/conda/
 
-RUN conda create -y -c conda-forge -n {{cookiecutter.package_name}} python=3.7 \
+RUN conda create -y -c conda-forge -n {{cookiecutter.project_name}} python=3.7 \
     boto3 gdal imageio importlib_metadata lxml matplotlib netCDF4 numpy \
     pillow proj psycopg2 requests scipy setuptools six statsmodels wheel && \
     conda clean -afy && \
     conda activate {{cookiecutter.package_name}} && \
-    sed -i 's/conda activate base/conda activate {{cookiecutter.package_name}}/g' /home/conda/.profile
+    sed -i 's/conda activate base/conda activate {{cookiecutter.project_name}}/g' /home/conda/.profile
 
 ARG S3_PYPI_HOST
 
@@ -47,5 +47,5 @@ RUN python -m pip install --no-cache-dir {{cookiecutter.package_name}} \
     --trusted-host "${S3_PYPI_HOST}" \
     --extra-index-url "http://${S3_PYPI_HOST}"
 
-ENTRYPOINT ["conda", "run", "-n", "{{cookiecutter.package_name}}", "{{cookiecutter.package_name}}"]
+ENTRYPOINT ["conda", "run", "-n", "{{cookiecutter.project_name}}", "{{cookiecutter.package_name}}"]
 CMD ["-v"]

@@ -1,0 +1,7 @@
+# Post Generation TODO:
+ * tag the initial (repo, or package generation) commit with a `v0.0.0` tag, e.g.:
+   ```bash
+   git tag -a v0.0.0 -m "Marking zeroth release for auto-versioning and CI/CD Tooling"
+   git push --tags
+   ```
+ * 
