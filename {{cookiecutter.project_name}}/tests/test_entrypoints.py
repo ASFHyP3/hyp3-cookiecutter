@@ -6,4 +6,3 @@ def test_{{cookiecutter.package_name}}(script_runner):
 def test_{{cookiecutter.process_name}}(script_runner):
     ret = script_runner.run('{{cookiecutter.process_name}}', '-h')
     assert ret.success
-

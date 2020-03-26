@@ -38,7 +38,7 @@ RUN conda create -y -c conda-forge -n {{cookiecutter.project_name}} python=3.7 \
     boto3 gdal imageio importlib_metadata lxml matplotlib netCDF4 numpy \
     pillow proj psycopg2 requests scipy setuptools six statsmodels wheel && \
     conda clean -afy && \
-    conda activate {{cookiecutter.package_name}} && \
+    conda activate {{cookiecutter.project_name}} && \
     sed -i 's/conda activate base/conda activate {{cookiecutter.project_name}}/g' /home/conda/.profile
 
 ARG S3_PYPI_HOST
