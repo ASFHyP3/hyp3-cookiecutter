@@ -8,7 +8,7 @@
    ```bash
    # Assuming your aws cli is setup to use the hyp3-full-access profile
    aws ecr create-repository \
-       --repository-name {{cookecutter.project_name}} \
+       --repository-name {{cookiecutter.project_name}} \
        --image-scanning-configuration scanOnPush=false \
        --region us-east-1
    ```
