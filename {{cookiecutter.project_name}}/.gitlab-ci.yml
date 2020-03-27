@@ -65,7 +65,7 @@ Tag version:
     - git config core.sshCommand "ssh -o IdentitiesOnly=yes -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ${GITLAB_TOOLS_BOT_SSH} -F /dev/null"
     - git config --global user.email "UAF-asf-apd@alaska.edu"
     - git config --global user.name "Tools-bot"
-    - git remote set-url origin git@scm.asf.alaska.edu:hyp3/hyp3-ci.git
+    - git remote set-url origin git@scm.asf.alaska.edu:hyp3/{{cookiecutter.project_name}}.git
     - git fetch --all
     - apt-get install -y jq curl
     - 'export MERGE_REQUEST_PARENT=$(git log --pretty=%P -n 1 "${CI_COMMIT_SHA}" | awk -F '' '' ''{print $2}'')'
