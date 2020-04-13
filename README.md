@@ -45,7 +45,7 @@ from a terminal on your local development machine, navigate to where you'd like
 to create the project. Then run cookiecutter and follow the prompts:
 
 ```bash
-cookiecutter -f git@scm.asf.alaska.edu:hyp3/cookiecutter-hyp3plugin.git
+cookiecutter git@scm.asf.alaska.edu:hyp3/cookiecutter-hyp3plugin.git
 ```
 
 Now, you should have a `hyp3-<project>` directory which contains a minimal HyP3
