@@ -62,7 +62,8 @@ Tag version:
   stage: tools-bot
   before_script:
     - chmod 600 ${GITLAB_TOOLS_BOT_SSH}
-    - git config core.sshCommand "ssh -o IdentitiesOnly=yes -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ${GITLAB_TOOLS_BOT_SSH} -F /dev/null"
+    - git config core.sshCommand "ssh -o IdentitiesOnly=yes -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+      -i ${GITLAB_TOOLS_BOT_SSH} -F /dev/null"
     - git config --global user.email "UAF-asf-apd@alaska.edu"
     - git config --global user.name "Tools-bot"
     - git remote set-url origin git@scm.asf.alaska.edu:hyp3/{{cookiecutter.project_name}}.git
@@ -120,7 +121,8 @@ gitleaks:
   script:
     - export LAST_TAG_HASH=$(git show-ref --hash -- $(git describe --abbrev=0))
     # NOTE: commit range goes back into history; commit-from == HEAD by default
-    - gitleaks -v --repo-path=./ --commit-to="${LAST_TAG_HASH}" --report=gitleaks_report.json
+    - gitleaks -v --repo-path=./ --config=./.gitlab/gitleaks.toml --commit-to="${LAST_TAG_HASH}"
+      --report=gitleaks_report.json
   artifacts:
     when: on_failure
     paths:
@@ -133,7 +135,9 @@ flake8:
     - *before_defaults
     - python3 -m pip install flake8 flake8-import-order flake8-blind-except flake8-builtins
   script:
-    - flake8 --max-line-length=120 --import-order-style=pycharm --application-import-names {{cookiecutter.package_name}} --statistics --tee --output-file flake8_report.txt
+    - flake8 --max-line-length=120 --import-order-style=pycharm
+      --application-import-names {{cookiecutter.package_name}}
+      --statistics --tee --output-file flake8_report.txt
   artifacts:
     when: on_failure
     paths:
@@ -215,8 +219,8 @@ dockerize:
   stage: containerize
   tags:
     - docker
+    - apd-dev
   before_script:
-    - python2 -m pip install --user colorama
     - python3 -m pip install --user "setuptools>=42" wheel "setuptools-scm[toml]>=3.4"
     - export SDIST_VERSION=$(python3 setup.py --version)
     - export CI_JOB_TIMESTAMP=$(date --utc --rfc-3339=seconds)
@@ -227,8 +231,7 @@ dockerize:
       --label org.opencontainers.image.version="${SDIST_VERSION}"
       --label org.opencontainers.image.revision="${CI_COMMIT_SHORT_SHA}"
       --build-arg S3_PYPI_HOST=${S3_PYPI_HOST} .
-    # - aws ecr get-login-password | docker login --username AWS --password-stdin ${HYP3_REGISTRY}
-    - $(aws ecr get-login --no-include-email)
+    - aws ecr get-login-password | docker login --username AWS --password-stdin ${HYP3_REGISTRY}
     - docker push ${HYP3_REGISTRY}/{{cookiecutter.project_name}}:${SDIST_VERSION/+/_}
   <<: *only_mr_protected
 
@@ -247,12 +250,14 @@ verify dockerize (test):
   stage: verify
   tags:
     - docker
+    - apd-dev
   before_script:
-    - python2 -m pip install --user colorama
     - python3 -m pip install --user "setuptools>=42" wheel "setuptools-scm[toml]>=3.4"
     - export SDIST_VERSION=$(python3 setup.py --version)
   script:
-    - docker tag ${HYP3_REGISTRY}/{{cookiecutter.project_name}}:${SDIST_VERSION/+/_} ${HYP3_REGISTRY}/{{cookiecutter.project_name}}:test
+    - docker tag ${HYP3_REGISTRY}/{{cookiecutter.project_name}}:${SDIST_VERSION/+/_}
+      ${HYP3_REGISTRY}/{{cookiecutter.project_name}}:test
+    - aws ecr get-login-password | docker login --username AWS --password-stdin ${HYP3_REGISTRY}
     - docker push ${HYP3_REGISTRY}/{{cookiecutter.project_name}}:test
   needs:
     - job: "dockerize"
@@ -264,12 +269,14 @@ verify dockerize:
   stage: verify
   tags:
     - docker
+    - apd-dev
   before_script:
-    - python2 -m pip install --user colorama
     - python3 -m pip install --user "setuptools>=42" wheel "setuptools-scm[toml]>=3.4"
     - export SDIST_VERSION=$(python3 setup.py --version)
   script:
-    - docker tag ${HYP3_REGISTRY}/{{cookiecutter.project_name}}:${SDIST_VERSION/+/_} ${HYP3_REGISTRY}/{{cookiecutter.project_name}}:latest
+    - docker tag ${HYP3_REGISTRY}/{{cookiecutter.project_name}}:${SDIST_VERSION/+/_}
+      ${HYP3_REGISTRY}/{{cookiecutter.project_name}}:latest
+    - aws ecr get-login-password | docker login --username AWS --password-stdin ${HYP3_REGISTRY}
     - docker push ${HYP3_REGISTRY}/{{cookiecutter.project_name}}:latest
   needs:
     - job: "dockerize"
