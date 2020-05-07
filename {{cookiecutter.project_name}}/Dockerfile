@@ -16,6 +16,7 @@ LABEL org.opencontainers.image.source="{{cookiecutter.public_url}}"
 # LABEL org.opencontainers.image.version=""
 # LABEL org.opencontainers.image.revision=""
 
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y unzip vim && apt-get clean
 
 ARG CONDA_GID=1000
@@ -42,10 +43,11 @@ RUN conda create -y -c conda-forge -n {{cookiecutter.project_name}} python=3.7 \
     sed -i 's/conda activate base/conda activate {{cookiecutter.project_name}}/g' /home/conda/.profile
 
 ARG S3_PYPI_HOST
+ARG SDIST_SPEC
 
-RUN python -m pip install --no-cache-dir {{cookiecutter.package_name}} \
+RUN python -m pip install --no-cache-dir {{cookiecutter.package_name}}${SDIST_SPEC} \
     --trusted-host "${S3_PYPI_HOST}" \
     --extra-index-url "http://${S3_PYPI_HOST}"
 
 ENTRYPOINT ["conda", "run", "-n", "{{cookiecutter.project_name}}", "{{cookiecutter.package_name}}"]
-CMD ["-v"]
+CMD ["-h"]
