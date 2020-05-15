@@ -8,7 +8,7 @@ project_name = '{{ cookiecutter.project_name }}'
 package_name = '{{ cookiecutter.package_name }}'
 
 if not re.match(PROJECT_REGEX, project_name):
-    print(f'ERROR: {project_name} is not a valid Gitlab project name!\n'
+    print(f'ERROR: {project_name} is not a valid GitHub project name!\n'
           f'  Name should match this regex: {PROJECT_REGEX}')
     sys.exit(1)
 
