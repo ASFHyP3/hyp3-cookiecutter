@@ -1,4 +1,4 @@
-name: hyp3-ci
+name: {{ cookiecutter.project_name }}
 channels:
   - conda-forge
   - nodefaults

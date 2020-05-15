@@ -19,7 +19,8 @@ jobs:
 
     - name: Lint with flake8
       run: |
-        flake8 --max-line-length=120 --import-order-style=pycharm --statistics --application-import-names hyp3_ci
+        flake8 --max-line-length=120 --import-order-style=pycharm --statistics \
+            --application-import-names {{ cookiecutter.package_name }}
 
 
   gitleaks:

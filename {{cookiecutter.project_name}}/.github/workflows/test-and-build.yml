@@ -29,7 +29,7 @@ jobs:
         with:
           auto-update-conda: true
           python-version: 3.7
-          activate-environment: hyp3-ci
+          activate-environment: {{ cookiecutter.project_name }}
           environment-file: conda-env.yml
           channels: conda-forge, nodefaults
 
@@ -37,7 +37,7 @@ jobs:
         shell: bash -l {0}
         run: |
           python -m pip install .
-          pytest --cov=hyp3_ci
+          pytest --cov={{ cookiecutter.package_name }}
 
       - name: Safety analysis of conda environment
         shell: bash -l {0}
@@ -66,7 +66,7 @@ jobs:
           query: .github/queries/asssociated-pr.query.yml
           outputFile: pr.json
           owner: asfadmin
-          name: hyp3-ci
+          name: {{ cookiecutter.project_name }}
           sha: ${{ github.sha }}
 
       - name: Get PR labels
@@ -78,7 +78,7 @@ jobs:
           query: .github/queries/pr-labels.query.yml
           outputFile: labels.json
           owner: asfadmin
-          name: hyp3-ci
+          name: {{ cookiecutter.project_name }}
 
       - name: Upload a Build Artifact
         if: github.ref == 'refs/heads/master'
