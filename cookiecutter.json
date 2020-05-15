@@ -5,7 +5,7 @@
   "process_name": "{{cookiecutter.package_name|replace('hyp3', 'proc')}}",
   "process_type": "{{cookiecutter.package_name|replace('hyp3', '')|trim(chars='_')}}",
   "short_description": "HyP3 plugin for {{cookiecutter.process_type}} processing",
-  "public_url": "https://scm.asf.alaska.edu/hyp3/{{cookiecutter.project_name}}",
+  "public_url": "https://github.com/asfadmin/{{cookiecutter.project_name}}",
   "copyright_year": "{% now 'utc', '%Y' %}",
   "_extensions": ["jinja2_time.TimeExtension"]
 }
