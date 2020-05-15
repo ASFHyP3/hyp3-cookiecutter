@@ -37,9 +37,8 @@ def hyp3_process(cfg, n):
             log.info(f'PRODUCT directory not found: {product_dir}')
             log.error('Processing failed')
             raise Exception('Processing failed: PRODUCT directory not found')
-        else:
-            # TODO: final product cleanup and upload to HyP3 DB
-            pass
+
+        # TODO: final product cleanup and upload to HyP3 DB
 
     except Exception as e:
         log.exception('{{cookiecutter.process_type}} processing failed!')
