@@ -34,19 +34,17 @@ RUN groupadd -g "${CONDA_GID}" --system conda && \
 USER ${CONDA_UID}
 SHELL ["/bin/bash", "-l", "-c"]
 ENV PYTHONDONTWRITEBYTECODE=true
-WORKDIR /home/conda/
-
-RUN conda create -y -c conda-forge -n {{cookiecutter.project_name}} python=3.7 \
-    boto3 gdal imageio importlib_metadata lxml matplotlib netCDF4 numpy \
-    pillow proj psycopg2 requests scipy setuptools six statsmodels wheel && \
-    conda clean -afy && \
-    conda activate {{cookiecutter.project_name}} && \
-    sed -i 's/conda activate base/conda activate {{cookiecutter.project_name}}/g' /home/conda/.profile
+WORKDIR /home/conda
 
 ARG S3_PYPI_HOST
 ARG SDIST_SPEC
 
-RUN python -m pip install --no-cache-dir {{cookiecutter.package_name}}${SDIST_SPEC} \
+COPY conda-env.yml ${WORKDIR}/conda-env.yaml
+
+RUN conda env create -f conda-env.yml && \
+    conda activate {{cookiecutter.project_name}} && \
+    sed -i 's/conda activate base/conda activate {{cookiecutter.project_name}}/g' /home/conda/.profile && \
+    python -m pip install --no-cache-dir {{cookiecutter.package_name}}${SDIST_SPEC} \
     --trusted-host "${S3_PYPI_HOST}" \
     --extra-index-url "http://${S3_PYPI_HOST}"
 
