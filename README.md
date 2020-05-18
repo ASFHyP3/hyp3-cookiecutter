@@ -121,7 +121,7 @@ Go to your repository in GitHub and on the right, click "Settings", then:
        * click "Require status checks to pass before merging"
        * click "Restrict who can push to matching branches"
          * add "asfadmin/tools-admin" to who can push
-       * Save
+       * Create
      * develop:
        * set "Branch name pattern" to "develop"
        * click "Require pull request review before merging"
@@ -129,14 +129,41 @@ Go to your repository in GitHub and on the right, click "Settings", then:
        * click "Require status checks to pass before merging"
        * click "Restrict who can push to matching branches"
          * add "asfadmin/tools-admin" to who can push
-       * Save
+       * Create
 4. In "Secrets":
    * Add `AWS_ACCESS_KEY_ID` for the AWS "tools-bot" role
    * Add `AWS_SECRET_ACCESS_KEY` for the AWS "tools-bot" role
    * Add `TOOLS_BOT_PAK` with the GitHub @tools-bot personal access key
 
+### labels! ... 
 
-### 6. Restart the GitHub Actions
+Make sure these labels exist, or add them to the repository: 
+
+* major -- Bump the major version number of this project -- f981a1
+* minor -- Bump the minor version number of this project -- fca6af
+* patch -- Bump the patch version number of this project -- f7e4e5
+* bumpless -- Changes to documentation, CI/CD pipelines, etc that don't affect the software's version -- b5b5b5
+* CI/CD -- Changes to CI/CD strategy -- 5e92db
+* tools-bot -- PRs and Issues opened by the Tools Bot -- fbca04
+
+
+### 6. Add the GitHub repository to codefactor.io
+
+Navigate to https://www.codefactor.io/repository/new and, when logged in as `asfadmin` 
+(if you don't have permissions, get whoever created the repo to do this step):
+* Search for your github repository `asfadmin/hyp3-<process>` and "Import" it
+* In the left menu, click on repository and then navigate to "Settings" in the upper left
+  * Make sure these tools are on:
+    * Yamllint
+    * Hadolint
+    * Pylint
+    * Bandit
+    * Duplication checker 
+  * Navigate to "active branches" at the top and make sure these branches are "on":
+    * develop
+    * master
+
+### 7. Restart the GitHub Actions
 
 Now you're all setup and you should be able to navigate to your repository "Actions",
 restart the failed Workflows on `develop`, and watch it create minimal HyP3 plugin 
