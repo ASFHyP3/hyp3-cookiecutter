@@ -50,7 +50,7 @@ You should now have a development environment with all the required packages for
 a generic HyP3 plugin
 
 
-### 3. Push the repository to GitHab
+### 3. Push the repository to GitHub
 
 We want to push the local copy we just created to our GitHub repository:
 
