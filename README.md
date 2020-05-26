@@ -1,4 +1,4 @@
-# cookiecutter-hyp3plugin
+# HyP3 Cookiecutter
 
 Use [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/) to quickly 
 generate a new HyP3 Plugin
@@ -30,7 +30,7 @@ follow the prompts:
 
 ```bash
 python3 -m pip install cookiecutter
-cookiecutter git@scm.asf.alaska.edu:hyp3/cookiecutter-hyp3plugin.git
+cookiecutter git@github.com:asfadmin/hyp3-cookiecutter.git
 ```
 
 Now, you should have a `hyp3-<process>` directory which contains a minimal HyP3
