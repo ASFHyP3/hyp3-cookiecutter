@@ -164,7 +164,7 @@ jobs:
       - name: Add test tag
         if: github.ref == 'refs/heads/develop'
         run: |
-          export SDIST_VERSION={{'${{needs.package.outputs.SDIST_VERSION}}'}}
+          export SDIST_VERSION={{'${{ needs.package.outputs.SDIST_VERSION }}'}}
           docker tag ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:${SDIST_VERSION/+/_} \
               ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:test
           docker push ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:test
@@ -172,7 +172,7 @@ jobs:
       - name: Add latest tag
         if: github.ref == 'refs/heads/master'
         run: |
-          export SDIST_VERSION={{'${{needs.package.outputs.SDIST_VERSION}}'}}
+          export SDIST_VERSION={{'${{ needs.package.outputs.SDIST_VERSION }}'}}
           docker tag ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:${SDIST_VERSION/+/_} \
               ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:latest
           docker push ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:latest
