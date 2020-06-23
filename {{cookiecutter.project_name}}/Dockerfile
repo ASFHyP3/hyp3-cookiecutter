@@ -39,7 +39,7 @@ WORKDIR /home/conda
 ARG S3_PYPI_HOST
 ARG SDIST_SPEC
 
-COPY conda-env.yml ${WORKDIR}/conda-env.yml
+COPY conda-env.yml /home/conda/conda-env.yml
 
 RUN conda env create -f conda-env.yml && \
     conda activate {{cookiecutter.project_name}} && \
