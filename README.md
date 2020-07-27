@@ -119,7 +119,6 @@ Go to your repository in GitHub and on the right, click "Settings", then:
        * click "Dismiss stale pull request approvals when new commits are pushed"
        * click "Require status checks to pass before merging"
        * click "Restrict who can push to matching branches"
-         * add "ASFHyP3/Tools" to who can push
        * Create
      * develop:
        * set "Branch name pattern" to "develop"
@@ -127,7 +126,7 @@ Go to your repository in GitHub and on the right, click "Settings", then:
        * click "Dismiss stale pull request approvals when new commits are pushed"
        * click "Require status checks to pass before merging"
        * click "Restrict who can push to matching branches"
-         * add "ASFHyP3/Tools" to who can push
+         * add "ASFHyP3/automation" to who can push
        * Create
 
 ### 6. Add the GitHub repository to codefactor.io
