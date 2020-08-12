@@ -63,11 +63,11 @@ git commit -m "Minimal HyP3 plugin created with the hyp3plugin cookiecutter"
 git push -u origin develop
 ```
 
-And a master (for production releases) branch:
+And a main (for production releases) branch:
 
 ```bash
-git checkout -b master
-git push -u origin master
+git checkout -b main
+git push -u origin main
 ```
 
 We also want to create a zeroth production version from this initial commit so 
@@ -113,8 +113,8 @@ Go to your repository in GitHub and on the right, click "Settings", then:
 3. In "Branches":
    * make sure the default branch is "develop"
    * Add a "Branch protection rule" for:
-     * master:
-       * set "Branch name pattern" to "master"
+     * main:
+       * set "Branch name pattern" to "main"
        * click "Require pull request review before merging"
        * click "Dismiss stale pull request approvals when new commits are pushed"
        * click "Require status checks to pass before merging"
@@ -141,7 +141,7 @@ Navigate to https://www.codefactor.io/repository/new and, when logged in as `ASF
     * Duplication checker 
   * Navigate to "active branches" at the top and make sure these branches are "on":
     * develop
-    * master
+    * main
 
 ### 7. Restart the GitHub Actions
 
