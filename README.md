@@ -109,7 +109,8 @@ Go to your repository in GitHub and on the right, click "Settings", then:
      * Make sure "Automatically delete head branches" is clicked
 2. In "Manage access":
    * click "Invite teams or people" and: 
-     * add "ASFHyP3/Tools" with the "Admin" role
+     * add "ASFHyP3/Tools" with the "Maintain" role
+     * add "ASFHyP3/automation" with the "Write" role
 3. In "Branches":
    * make sure the default branch is "develop"
    * Add a "Branch protection rule" for:
