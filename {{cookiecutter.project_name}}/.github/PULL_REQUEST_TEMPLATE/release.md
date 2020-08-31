@@ -24,7 +24,7 @@ or pull requests
 
 - [ ] (If applicable) Updated the dependencies and indicated any downstream changes that are required
 
-- [ ] Updated the CHANGELOG.md
+- [ ] Updated `CHANGELOG.md`
 - [ ] Added/updated documentation for these changes
 - [ ] Added/updated tests for these changes
 
@@ -32,6 +32,6 @@ or pull requests
 
 - [ ] Have all dependencies been updated?
 - [ ] Is the level of changes labeled appropriately?
-- [ ] Are all the changes described appropriately in the changelog?
+- [ ] Are all the changes described appropriately in `CHANGELOG.md`?
 - [ ] Has the documentation been adequately updated?
 - [ ] Are the test adequate?
