@@ -13,4 +13,7 @@ except PackageNotFoundError:
           'Or, to just get the version number use:\n'
           '   python setup.py --version')
 
-__all__ = ['__version__', 'process']
+__all__ = [
+    '__version__',
+    'process',
+]
