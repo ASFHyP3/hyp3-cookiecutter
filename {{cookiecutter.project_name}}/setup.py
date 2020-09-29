@@ -29,16 +29,18 @@ setup(
         'Programming Language :: Python :: 3.7',
         ],
 
-    python_requires='~=3.7',
+    python_requires='~=3.8',
 
     install_requires=[
         'hyp3lib',
-        'hyp3proclib',
-        'importlib_metadata',
     ],
 
     extras_require={
         'develop': [
+            'flake8',
+            'flake8-import-order',
+            'flake8-blind-except',
+            'flake8-builtins',
             'pytest',
             'pytest-cov',
             'pytest-console-scripts',
