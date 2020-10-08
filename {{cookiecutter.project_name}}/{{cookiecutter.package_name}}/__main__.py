@@ -1,63 +1,45 @@
 """
 {{cookiecutter.process_type}} processing for HyP3
 """
+import logging
+from argparse import ArgumentParser
 
-import os
-from datetime import datetime
+from hyp3lib.aws import upload_file_to_s3
+from hyp3lib.image import create_thumbnail
 
-import hyp3proclib
-from hyp3proclib.logger import log
-from hyp3proclib.proc_base import Processor
 
 import {{cookiecutter.package_name}}
 
 
-def hyp3_process(cfg, n):
-    try:
-        log.info('Processing hello_world')
-        if not cfg['skip_processing']:
-            log.info(f'Process starting at {datetime.now()}')
-            launch_dir = os.getcwd()
-            os.chdir(cfg['workdir'])
-
-            hyp3proclib.process(
-                cfg, '{{cookiecutter.process_name}}', ["--hello-world"]
-            )
-
-            os.chdir(launch_dir)
-        else:
-            log.info('Processing skipped!')
-            cfg['log'] += "(debug mode)"
-
-        cfg['success'] = True
-        hyp3proclib.update_completed_time(cfg)
-
-        product_dir = os.path.join(cfg['workdir'], 'PRODUCT')
-        if not os.path.isdir(product_dir):
-            log.info(f'PRODUCT directory not found: {product_dir}')
-            log.error('Processing failed')
-            raise Exception('Processing failed: PRODUCT directory not found')
-
-        # TODO: final product cleanup and upload to HyP3 DB
-
-    except Exception as e:
-        log.exception('{{cookiecutter.process_type}} processing failed!')
-        log.exception('Notifying user')
-        hyp3proclib.failure(cfg, str(e))
-
-    hyp3proclib.file_system.cleanup_workdir(cfg)
-
-    log.info('{{cookiecutter.process_type}} done')
-
-
 def main():
     """
-    Main entrypoint for {{cookiecutter.package_name}}
+    HyP3 entrypoint for {{cookiecutter.package_name}}
     """
-    processor = Processor(
-        '{{cookiecutter.process_type}}', hyp3_process, sci_version={{cookiecutter.package_name}}.__version__
+    parser = ArgumentParser()
+    parser.add_argument('--bucket', help='AWS S3 bucket HyP3 for upload the final product(s)')
+    parser.add_argument('--bucket-prefix', default='', help='Add a bucket prefix to product(s)')
+
+    # TODO: Your arguments here
+    parser.add_argument('--greeting', default='Hello world!',
+                        help='Write this greeting to a product file')
+
+    args = parser.parse_args()
+
+    logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
+                        datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
+
+
+    product_file = {{cookiecutter.package_name}}.process(
+            gretting=args.greeting,
     )
-    processor.run()
+
+    if args.bucket:
+        upload_file_to_s3(product_file, args.bucket, args.bucket_prefix)
+        browse_images = product_file.with_suffix('.png')
+        for browse in browse_images:
+            thumbnail = create_thumbnail(browse)
+            upload_file_to_s3(browse, args.bucket, args.bucket_prefix)
+            upload_file_to_s3(thumbnail, args.bucket, args.bucket_prefix)
 
 
 if __name__ == '__main__':

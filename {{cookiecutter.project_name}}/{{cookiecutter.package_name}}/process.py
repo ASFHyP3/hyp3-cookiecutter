@@ -4,31 +4,34 @@
 
 import argparse
 import logging
+from pathlib import Path
 
 from {{cookiecutter.package_name}} import __version__
 
 log = logging.getLogger(__name__)
 
 
-def process(hello_world=False):
-    """Process hello_world
+def process(greeting: str = 'Hello world!') -> Path:
+    """Create a greeting product
 
     Args:
-        hello_world (bool): If true, print "Hello world!" (Default: False)
+        greeting: Write this greeting to a product file (Default: "Hello world!" )
     """
-    log.debug(f'Hello world? {hello_world}')
-    if hello_world:
-        print("Hello world!")
+    log.debug(f'Greeting: {greeting}')
+    product_file = Path('greeting.txt')
+    product_file.write_text(greeting)
+    return product_file
+
 
 
 def main():
-    """Main entrypoint"""
+    """Process entrypoint"""
     parser = argparse.ArgumentParser(
         prog='{{cookiecutter.process_name}}',
         description=__doc__,
     )
-    parser.add_argument('--hello-world', action='store_true',
-                        help='Print "Hello world!"')
+    parser.add_argument('--greeting', default='Hello world!',
+                        help='Write this greeting to a product file')
     parser.add_argument('--version', action='version', version=f'%(prog)s {__version__}')
     args = parser.parse_args()
 

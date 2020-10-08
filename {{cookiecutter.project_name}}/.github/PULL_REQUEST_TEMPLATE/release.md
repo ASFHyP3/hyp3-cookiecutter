@@ -14,7 +14,7 @@ or pull requests
 - [ ] Assigned a reviewer
   <!-- NOTE: Pull requests should only be opened for merges to protected branches (required) and any
    changes which you'd like reviewed. Do not open a pull request to update a feature or personal
-   branch -- simply merge with `git`.
+   branch -- simply merge with `git`
    -->
 - [ ] Indicated the level of changes to this package by affixing one of these labels:
   * major -- Major changes to the API that may break current workflows
@@ -34,4 +34,4 @@ or pull requests
 - [ ] Is the level of changes labeled appropriately?
 - [ ] Are all the changes described appropriately in `CHANGELOG.md`?
 - [ ] Has the documentation been adequately updated?
-- [ ] Are the test adequate?
+- [ ] Are the tests adequate?

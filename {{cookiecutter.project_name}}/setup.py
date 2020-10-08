@@ -1,16 +1,14 @@
-import os
+from pathlib import Path
 
 from setuptools import find_packages, setup
 
-_HERE = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(_HERE, 'README.md'), 'r') as f:
-    long_desc = f.read()
+readme = Path(__file__).parent / 'README.md'
 
 setup(
     name='{{cookiecutter.package_name}}',
     use_scm_version=True,
     description='{{cookiecutter.short_description}}',
-    long_description=long_desc,
+    long_description=readme.read_text(),
     long_description_content_type='text/markdown',
 
     url='{{cookiecutter.public_url}}',
@@ -26,19 +24,21 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         ],
 
-    python_requires='~=3.7',
+    python_requires='~=3.8',
 
     install_requires=[
         'hyp3lib',
-        'hyp3proclib',
-        'importlib_metadata',
     ],
 
     extras_require={
         'develop': [
+            'flake8',
+            'flake8-import-order',
+            'flake8-blind-except',
+            'flake8-builtins',
             'pytest',
             'pytest-cov',
             'pytest-console-scripts',
