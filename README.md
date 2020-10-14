@@ -43,7 +43,7 @@ You can, create a development environment with [conda](https://docs.conda.io/en/
 
 ```bash
 cd hyp3-<process>
-conda env create -f conda_env.yaml
+conda env create -f conda_env.yml
 ``` 
 
 You should now have a development environment with all the required packages for
