@@ -1,7 +1,7 @@
 # HyP3 Cookiecutter
 
 Use [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/) to quickly 
-generate a new HyP3 Plugin
+generate a new HyP3 Plugin.
 
 ## Usage
 
@@ -12,13 +12,13 @@ GitHub:
 
 * https://github.com/organizations/ASFHyP3/repositories/new
 
-* Note: If you don't have repo create permissions in the `ASFHyP3` org, ask the
-  Tools team to create you a repo!
+*Note: If you don't have repo create permissions in the `ASFHyP3` org, ask the
+  Tools team to create you a repo!*
   
 You should enter a repository name like `hyp3-<process>` where `<process>` is the 
 short name of your process (e.g., `hyp3-insar-isce`), write a short (1 sentence)
 description of the plugin (e.g., `HyP3 plugin for <process> processing`) set the 
-repository to "Public", and *do not* click the "Initialize repository with a 
+repository to "Public", and *do not* click the "Initialize repository with a
 README" box (or add a `.gitignore` or add a license). 
 
 
@@ -36,19 +36,29 @@ cookiecutter git@github.com:ASFHyP3/hyp3-cookiecutter.git
 Now, you should have a `hyp3-<process>` directory which contains a minimal HyP3
 plugin.
 
-
 ### 2. Setup a development environment
 
-You can, create a development environment with [conda](https://docs.conda.io/en/latest/miniconda.html):
+We use a `conda` environments to manage our dependencies; you can get Miniconda
+(recommended) here:
+
+https://docs.conda.io/en/latest/miniconda.html
+
+Once conda is installed, from the repository root, you can create and activate a
+development environment with all the necessary dependencies
 
 ```bash
 cd hyp3-<process>
 conda env create -f conda_env.yml
+conda activate hyp3-<process>
 ``` 
 
 You should now have a development environment with all the required packages for
-a generic HyP3 plugin
+a generic HyP3 plugin. Later, as dependencies change, you can edit the `conda-env.yml`
+file and then update your environment with
 
+```bash
+conda env update -f conda-env.yml
+```
 
 ### 3. Push the repository to GitHub
 
@@ -70,32 +80,30 @@ git checkout -b main
 git push -u origin main
 ```
 
-We also want to create a zeroth production version from this initial commit so 
-our the plugin's auto-versioning will work correctly.
+We also want to create a zeroth production version from this initial commit so that
+the plugin's auto-versioning will work correctly.
 
 ```bash
 git tag -a v0.0.0 -m "Marking zeroth release for auto-versioning and CI/CD Tooling"
 git push --tags
 ```
 
-And go back to the development branch:
+Now, go back to the development branch:
 
 ```bash
 git checkout develop
 ```
 
-
 ### 4. Configure the AWS ECR repository
 
-Create a docker repository for your plugin in the `hyp3-full-access` account:
+Create a docker repository for your plugin in the `hyp3-v2-full-access` account:
    ```bash
-   # Assuming your aws cli is setup to use the hyp3-full-access profile
+   # Assuming your aws cli is setup to use the hyp3-v2-full-access profile
    aws ecr create-repository \
        --repository-name hyp3-<process> \
-       --image-scanning-configuration scanOnPush=false \
-       --region us-east-1
+       --image-scanning-configuration scanOnPush=true \
+       --region us-west-2
    ```
-
 
 ### 5. Configure the GitHub repository settings
 
@@ -128,24 +136,8 @@ Go to your repository in GitHub and on the right, click "Settings", then:
          * add "ASFHyP3/automation" to who can push
        * Create
 
-### 6. Add the GitHub repository to codefactor.io
+### 6. Restart the GitHub Actions
 
-Navigate to https://www.codefactor.io/repository/new and, when logged in as `ASFHyP3`
-(if you don't have permissions, get whoever created the repo to do this step):
-* Search for your github repository `ASFHyP3/hyp3-<process>` and "Import" it
-* In the left menu, click on repository and then navigate to "Settings" in the upper left
-  * Make sure these tools are on:
-    * Yamllint
-    * Hadolint
-    * Pylint
-    * Bandit
-    * Duplication checker 
-  * Navigate to "active branches" at the top and make sure these branches are "on":
-    * develop
-    * main
-
-### 7. Restart the GitHub Actions
-
-Now you're all setup and you should be able to navigate to your repository "Actions",
+Now you're all setup! You should be able to navigate to your repository "Actions",
 restart the failed Workflows on `develop`, and watch it create minimal HyP3 plugin 
 container for your process. 
