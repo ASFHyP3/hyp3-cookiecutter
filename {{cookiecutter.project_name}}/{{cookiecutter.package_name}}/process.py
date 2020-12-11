@@ -11,7 +11,7 @@ from {{cookiecutter.package_name}} import __version__
 log = logging.getLogger(__name__)
 
 
-def process(greeting: str = 'Hello world!') -> Path:
+def {{cookiecutter.process_name}}(greeting: str = 'Hello world!') -> Path:
     """Create a greeting product
 
     Args:
@@ -25,7 +25,7 @@ def process(greeting: str = 'Hello world!') -> Path:
 
 
 def main():
-    """Process entrypoint"""
+    """{{cookiecutter.process_name}} entrypoint"""
     parser = argparse.ArgumentParser(
         prog='{{cookiecutter.process_name}}',
         description=__doc__,
@@ -35,7 +35,7 @@ def main():
     parser.add_argument('--version', action='version', version=f'%(prog)s {__version__}')
     args = parser.parse_args()
 
-    process(**args.__dict__)
+    {{cookiecutter.process_name}}(**args.__dict__)
 
 
 if __name__ == "__main__":

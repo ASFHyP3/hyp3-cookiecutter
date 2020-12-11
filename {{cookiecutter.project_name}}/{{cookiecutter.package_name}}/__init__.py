@@ -2,7 +2,7 @@
 
 from importlib.metadata import PackageNotFoundError, version
 
-from {{cookiecutter.package_name}}.process import process
+from {{cookiecutter.package_name}}.process import {{cookiecutter.process_name}}
 
 try:
     __version__ = version(__name__)
@@ -15,5 +15,5 @@ except PackageNotFoundError:
 
 __all__ = [
     '__version__',
-    'process',
+    '{{cookiecutter.process_name}}',
 ]
