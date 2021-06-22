@@ -36,13 +36,13 @@ USER ${CONDA_UID}
 SHELL ["/bin/bash", "-l", "-c"]
 WORKDIR /home/conda/
 
-COPY . /{{cookiecutter.package_name}}/
+COPY --chown=${CONDA_UID}:${CONDA_GID} . /{{cookiecutter.project_name}}/
 
-RUN mamba env create -f /{{cookiecutter.package_name}}/environment.yml && \
+RUN mamba env create -f /{{cookiecutter.project_name}}/environment.yml && \
     conda clean -afy && \
     conda activate {{cookiecutter.project_name}} && \
     sed -i 's/conda activate base/conda activate {{cookiecutter.project_name}}/g' /home/conda/.profile && \
-    python -m pip install --no-cache-dir /{{cookiecutter.package_name}}
+    python -m pip install --no-cache-dir /{{cookiecutter.project_name}}
 
-ENTRYPOINT ["conda", "run", "-n", "{{cookiecutter.project_name}}", "{{cookiecutter.package_name}}"]
+ENTRYPOINT ["/{{cookiecutter.project_name}}/{{cookiecutter.package_name}}/etc/entrypoint.sh"]
 CMD ["-h"]
