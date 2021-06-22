@@ -1,4 +1,4 @@
-FROM continuumio/miniconda3:4.7.12
+FROM condaforge/mambaforge:latest
 
 # For opencontainers label definitions, see:
 #    https://github.com/opencontainers/image-spec/blob/master/annotations.md
@@ -17,6 +17,8 @@ LABEL org.opencontainers.image.source="{{cookiecutter.public_url}}"
 # LABEL org.opencontainers.image.revision=""
 
 ARG DEBIAN_FRONTEND=noninteractive
+ENV PYTHONDONTWRITEBYTECODE=true
+
 RUN apt-get update && apt-get install -y --no-install-recommends unzip vim && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -25,28 +27,22 @@ ARG CONDA_UID=1000
 
 RUN groupadd -g "${CONDA_GID}" --system conda && \
     useradd -l -u "${CONDA_UID}" -g "${CONDA_GID}" --system -d /home/conda -m  -s /bin/bash conda && \
-    conda update -n base -c defaults conda && \
     chown -R conda:conda /opt && \
-    conda clean -afy && \
     echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/conda/.profile && \
     echo "conda activate base" >> /home/conda/.profile
 
+
 USER ${CONDA_UID}
 SHELL ["/bin/bash", "-l", "-c"]
-ENV PYTHONDONTWRITEBYTECODE=true
-WORKDIR /home/conda
+WORKDIR /home/conda/
 
-ARG S3_PYPI_HOST
-ARG SDIST_SPEC
+COPY . /{{cookiecutter.package_name}}/
 
-COPY environment.yml /home/conda/environment.yml
-
-RUN conda env create -f environment.yml && \
+RUN mamba env create -f /{{cookiecutter.package_name}}/environment.yml && \
+    conda clean -afy && \
     conda activate {{cookiecutter.project_name}} && \
     sed -i 's/conda activate base/conda activate {{cookiecutter.project_name}}/g' /home/conda/.profile && \
-    python -m pip install --no-cache-dir {{cookiecutter.package_name}}${SDIST_SPEC} \
-    --trusted-host "${S3_PYPI_HOST}" \
-    --extra-index-url "http://${S3_PYPI_HOST}"
+    python -m pip install --no-cache-dir /{{cookiecutter.package_name}}
 
 ENTRYPOINT ["conda", "run", "-n", "{{cookiecutter.project_name}}", "{{cookiecutter.package_name}}"]
 CMD ["-h"]
