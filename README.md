@@ -53,11 +53,11 @@ conda activate hyp3-<process>
 ``` 
 
 You should now have a development environment with all the required packages for
-a generic HyP3 plugin. Later, as dependencies change, you can edit the `conda-env.yml`
+a generic HyP3 plugin. Later, as dependencies change, you can edit the `environment.yml`
 file and then update your environment with
 
 ```bash
-conda env update -f conda-env.yml
+conda env update -f environment.yml
 ```
 
 ### 3. Push the repository to GitHub

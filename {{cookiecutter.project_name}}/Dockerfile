@@ -39,9 +39,9 @@ WORKDIR /home/conda
 ARG S3_PYPI_HOST
 ARG SDIST_SPEC
 
-COPY conda-env.yml /home/conda/conda-env.yml
+COPY environment.yml /home/conda/environment.yml
 
-RUN conda env create -f conda-env.yml && \
+RUN conda env create -f environment.yml && \
     conda activate {{cookiecutter.project_name}} && \
     sed -i 's/conda activate base/conda activate {{cookiecutter.project_name}}/g' /home/conda/.profile && \
     python -m pip install --no-cache-dir {{cookiecutter.package_name}}${SDIST_SPEC} \
