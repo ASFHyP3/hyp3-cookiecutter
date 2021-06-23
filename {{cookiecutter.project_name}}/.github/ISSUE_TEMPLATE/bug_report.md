@@ -8,7 +8,8 @@ assignees: ''
 ---
 
 **Describe the bug**
-A clear and concise description of what the bug is.
+A clear and concise description of what the bug is. Please include what you
+actually happened *and* what you expected to happen.
 
 **To Reproduce**
 Steps to reproduce the behavior:
@@ -16,10 +17,6 @@ Steps to reproduce the behavior:
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
 
 **Additional context**
 Add any other context about the problem here.
