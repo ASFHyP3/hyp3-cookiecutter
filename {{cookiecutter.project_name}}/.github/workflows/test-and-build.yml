@@ -106,18 +106,13 @@ jobs:
           git push --tags
           echo "Tagged version $(git describe --abbrev=0) and pushed back to repo"
 
-      - name: Determine SDIST_VERSION
-        id: build
-        run: |
-          git fetch origin +refs/tags/*:refs/tags/*
-          export SDIST_VERSION=$(python setup.py --version)
-          echo "::set-output name=version::${SDIST_VERSION}"
-
   dockerize:
     runs-on: ubuntu-latest
     needs: tag-version
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -128,35 +123,37 @@ jobs:
       - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build, tag, and push image to Amazon ECR
+      - name: set environment variables
         run: |
-          export SDIST_VERSION={{'${{ needs.tag-version.outputs.SDIST_VERSION }}'}}
-          export CI_JOB_TIMESTAMP=$(date --utc --rfc-3339=seconds)
-          echo "Building ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:${SDIST_VERSION/+/_}"
-          docker pull ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:test || true
-          docker build \
-                -t ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:${SDIST_VERSION/+/_} \
-                --label org.opencontainers.image.created="${CI_JOB_TIMESTAMP}" \
-                --label org.opencontainers.image.version="${SDIST_VERSION}" \
-                --label org.opencontainers.image.revision="${GITHUB_SHA}" \
-                .
-          docker push ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:${SDIST_VERSION/+/_}
+          echo "SDIST_VERSION=$(python setup.py --version)" >> $GITHUB_ENV
+          echo "CI_JOB_TIMESTAMP=$(date --utc --rfc-3339=seconds)" >> $GITHUB_ENV
+
+      - name: Build, tag, and push image to Amazon ECR
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: |
+            {{'${{ env.HYP3_REGISTRY }}/${{ github.repository_owner }}:${{ env.SDIST_VERSION }}'}}
+          labels: |
+            org.opencontainers.image.created={{'${{ env.CI_JOB_TIMESTAMP }}'}}
+            org.opencontainers.image.version={{'${{ env.SDIST_VERSION }}'}}
+            org.opencontainers.image.revision={{'${{ github.sha }}'}}
+
 
       - name: Add test tag
         if: github.ref == 'refs/heads/develop'
-        run: |
-          export SDIST_VERSION={{'${{ needs.tag-version.outputs.SDIST_VERSION }}'}}
-          docker tag ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:${SDIST_VERSION/+/_} \
-              ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:test
-          docker push ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:test
+        uses: akhilerm/tag-push-action@v1.0.0
+        with:
+          src: {{'${{ env.HYP3_REGISTRY }}/${{ github.repository_owner }}:${{ env.SDIST_VERSION }}'}}
+          dst: {{'${{ env.HYP3_REGISTRY }}/${{ github.repository_owner }}:test'}}
 
       - name: Add latest tag
         if: github.ref == 'refs/heads/main'
-        run: |
-          export SDIST_VERSION={{'${{ needs.tag-version.outputs.SDIST_VERSION }}'}}
-          docker tag ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:${SDIST_VERSION/+/_} \
-              ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:latest
-          docker push ${HYP3_REGISTRY}/${GITHUB_REPOSITORY##*/}:latest
+        uses: akhilerm/tag-push-action@v1.0.0
+        with:
+          src: {{'${{ env.HYP3_REGISTRY }}/${{ github.repository_owner }}:${{ env.SDIST_VERSION }}'}}
+          dst: {{'${{ env.HYP3_REGISTRY }}/${{ github.repository_owner }}:latest'}}
 
       - name: Logout of Amazon ECR
         if: always()
