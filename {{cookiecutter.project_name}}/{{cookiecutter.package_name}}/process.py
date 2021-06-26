@@ -23,7 +23,6 @@ def {{cookiecutter.process_name}}(greeting: str = 'Hello world!') -> Path:
     return product_file
 
 
-
 def main():
     """{{cookiecutter.process_name}} entrypoint"""
     parser = argparse.ArgumentParser(

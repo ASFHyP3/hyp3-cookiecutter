@@ -43,4 +43,4 @@ jobs:
         with:
           python-version: 3.x
 
-      - uses: ASFHyP3/actions/trufflehog@master
+      - uses: ASFHyP3/actions/trufflehog@main
