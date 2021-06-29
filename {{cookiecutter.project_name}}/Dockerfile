@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.authors="ASF APD/Tools Team <uaf-asf-apd@alaska.e
 LABEL org.opencontainers.image.licenses="BSD-3-Clause"
 LABEL org.opencontainers.image.url="{{cookiecutter.public_url}}"
 LABEL org.opencontainers.image.source="{{cookiecutter.public_url}}"
-LABEL org.opencontainers.image.documentation="https://hyp3-docs.asf.alaska.edu""
+LABEL org.opencontainers.image.documentation="https://hyp3-docs.asf.alaska.edu"
 
 # Dynamic lables to define at build time via `docker build --label`
 # LABEL org.opencontainers.image.created=""
