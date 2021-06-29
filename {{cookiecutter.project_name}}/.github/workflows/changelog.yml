@@ -1,4 +1,5 @@
 name: Changelog updated?
+
 on:
   pull_request:
     types:
