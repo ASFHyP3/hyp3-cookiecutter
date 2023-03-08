@@ -92,32 +92,19 @@ Now, go back to the development branch:
 git checkout develop
 ```
 
-### 4. Configure the AWS ECR repository
+### 4. Configure the GitHub repository settings
 
-Create a docker repository for your plugin in the `hyp3-v2-full-access` account:
-   ```bash
-   # Assuming your aws cli is setup to use the hyp3-v2-full-access profile
-   aws ecr create-repository \
-       --repository-name hyp3-<process> \
-       --image-scanning-configuration scanOnPush=true \
-       --region us-west-2
-   ```
-
-### 5. Configure the GitHub repository settings
-
-Once the zeroth release is pushed to GitHub, we need to configure the GitHub repository settings. 
+Once the zeroth release is pushed to GitHub, we need to configure the GitHub repository settings.
+The settings detailed here are not required, but we **STRONGLY** recommend them as they make it much
+ easier for others to collaborate on your project, and for you to control how the collaboration
+occurs.
 
 Go to your repository in GitHub and on the right, click "Settings", then:
 1. In "Options" (left):
-   * In the "Features" section, un-click "Wikis"
    * In the "Merge button" section
      * un-click "Allow squash merging"
      * Make sure "Automatically delete head branches" is clicked
-2. In "Manage access":
-   * click "Invite teams or people" and: 
-     * add "ASFHyP3/Tools" with the "Maintain" role
-     * add "ASFHyP3/automation" with the "Write" role
-3. In "Branches":
+2. In "Branches":
    * make sure the default branch is "develop"
    * Add a "Branch protection rule" for:
      * main:
@@ -125,14 +112,24 @@ Go to your repository in GitHub and on the right, click "Settings", then:
        * click "Require pull request review before merging"
        * click "Dismiss stale pull request approvals when new commits are pushed"
        * click "Require status checks to pass before merging"
+       * click "Do not allow bypassing of the above settings"
        * click "Restrict who can push to matching branches"
        * Create
      * develop:
        * set "Branch name pattern" to "develop"
+       * click "Require pull request review before merging"
        * click "Require status checks to pass before merging"
-       * click "Restrict who can push to matching branches"
-         * add "ASFHyP3/automation" to who can push
+       * click "Do not allow bypassing of the above settings"
        * Create
+
+For both the `main` and `develop` you can restrict who can push to the branch.
+In the same page where you set the above options, you can also click "Restrict
+who can push to matching branches", then search and add the desired people/organizations
+who are allowed to push.
+
+For more information on how to contribute to repositories set up in this manner,
+check out GitHub's [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow)
+article
 
 ### 6. Restart the GitHub Actions
 
