@@ -7,13 +7,7 @@ generate a new HyP3 Plugin.
 
 ### 0. Create a repository on GitHub
 
-To create a new plugin, you'll first need to create a new HyP3 repository in ASF's
-GitHub:
-
-* https://github.com/organizations/ASFHyP3/repositories/new
-
-*Note: If you don't have repo create permissions in the `ASFHyP3` org, ask the
-  Tools team to create you a repo!*
+To create a new plugin, you'll first need to create a new repository on [GitHub](https://github.com) where you will contain your plugin.
   
 You should enter a repository name like `hyp3-<process>` where `<process>` is the 
 short name of your process (e.g., `hyp3-insar-isce`), write a short (1 sentence)
