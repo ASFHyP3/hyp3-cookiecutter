@@ -32,8 +32,12 @@ plugin.
 
 ### 2. Setup a development environment
 
-We use a `conda` environments to manage our dependencies; you can get Miniconda
+We use a `conda`/`mamba` environments to manage our dependencies; you can get Mambaforge
 (recommended) here:
+
+https://github.com/conda-forge/miniforge#mambaforge
+
+And you can get Miniconda here:
 
 https://docs.conda.io/en/latest/miniconda.html
 
@@ -61,9 +65,9 @@ We want to push the local copy we just created to our GitHub repository:
 ```bash
 # From hyp3-<process>
 git init .
-git remote add origin git@github.com:ASFHyP3/hyp3-<process>.git
+git remote add origin git@github.com:YOUR-GITHUB-USERNAM-OR-ORG-NAME/hyp3-<process>.git
 git add .
-git commit -m "Minimal HyP3 plugin created with the hyp3plugin cookiecutter"
+git commit -m "Minimal HyP3 plugin created with the hyp3 plugin cookiecutter"
 git push -u origin develop
 ```
 
