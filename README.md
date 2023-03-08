@@ -131,7 +131,7 @@ For more information on how to contribute to repositories set up in this manner,
 check out GitHub's [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow)
 article
 
-### 6. Restart the GitHub Actions
+### 5. Restart the GitHub Actions
 
 Now you're all setup! You should be able to navigate to your repository "Actions",
 restart the failed Workflows on `develop`, and watch it create minimal HyP3 plugin 
