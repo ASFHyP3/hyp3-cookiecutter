@@ -12,20 +12,23 @@ on:
 
 jobs:
   call-pytest-workflow:
-    uses: ASFHyP3/actions/.github/workflows/reusable-pytest.yml@main
+    # Docs: https://github.com/ASFHyP3/actions
+    uses: ASFHyP3/actions/.github/workflows/reusable-pytest.yml@v0.7.1
     with:
       local_package_name: {{ cookiecutter.package_name }}
-      conda_env_name: {{ cookiecutter.project_name }}
 
   call-version-info-workflow:
-    uses: ASFHyP3/actions/.github/workflows/reusable-version-info.yml@main
-    with:
-      conda_env_name: {{ cookiecutter.project_name }}
+    # Docs: https://github.com/ASFHyP3/actions
+    uses: ASFHyP3/actions/.github/workflows/reusable-version-info.yml@v0.7.1
 
   call-docker-ghcr-workflow:
     needs: call-version-info-workflow
-    uses: ASFHyP3/actions/.github/workflows/reusable-docker-ghcr.yml@main
+    # Docs: https://github.com/ASFHyP3/actions
+    uses: ASFHyP3/actions/.github/workflows/reusable-docker-ghcr.yml@v0.7.1
     with:
       version_tag: {{'${{ needs.call-version-info-workflow.outputs.version_tag }}'}}
+      release_branch: main
+      develop_branch: develop
+      user: {{ cookiecutter.github_username }}
     secrets:
-      USER_TOKEN: {{'${{ secrets.TOOLS_BOT_PAK }}'}}
+      USER_TOKEN: {{'${{ secrets.GITHUB_TOKEN }}'}}
