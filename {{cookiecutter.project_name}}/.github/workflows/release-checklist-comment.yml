@@ -14,4 +14,4 @@ jobs:
       # optional; example shown
       additional_reviewer_items: '- [ ] Are there any risks associated with this release?'
     secrets:
-      USER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      USER_TOKEN: {{'${{ secrets.GITHUB_TOKEN }}'}}
