@@ -145,7 +145,7 @@ available in the GitHub Container Registry (GHCR). You can find this plugin in t
 section of your GitHub user/organization account. You can also `pull` it to your local
 machine for use using the command:
 
-`docker pull ghcr.io/GH_ACCOUNT_NAME/GH_REPOSITORY_NAME`
+`docker pull ghcr.io/<GH_ACCOUNT_NAME>/<GH_REPOSITORY_NAME>`
 
 GHCR containers are private by default. You'll need to manually change the visibility of
 your container to "Public" so that HyP3 can access it. See this [GitHub Documentation](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility#configuring-visibility-of-packages-for-your-personal-account)
