@@ -125,7 +125,8 @@ Go to your repository in GitHub and on the right, click "Settings", then:
 For both the `main` and `develop` you can restrict who can push to the branch.
 In the same page where you set the above options, you can also click "Restrict
 who can push to matching branches", then search and add the desired people/organizations
-who are allowed to push.
+who are allowed to push. If you set this, make sure you include the owner of your
+repository in this list - other your GitHub Actions won't work!
 
 For more information on how to contribute to repositories set up in this manner,
 check out GitHub's [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow)
