@@ -7,7 +7,7 @@ generate a new HyP3 Plugin.
 
 ### 0. Create a repository on GitHub
 
-To create a new plugin, you'll first need to create a new repository on [GitHub](https://github.com) where you will contain your plugin.
+To create a new plugin, you'll first need to create a new repository on [GitHub](https://github.com) for your plugin.
   
 You should enter a repository name like `hyp3-<process>` where `<process>` is the 
 short name of your process (e.g., `hyp3-insar-isce`), write a short (1 sentence)
