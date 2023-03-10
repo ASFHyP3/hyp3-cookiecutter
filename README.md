@@ -7,15 +7,9 @@ generate a new HyP3 Plugin.
 
 ### 0. Create a repository on GitHub
 
-To create a new plugin, you'll first need to create a new HyP3 repository in ASF's
-GitHub:
-
-* https://github.com/organizations/ASFHyP3/repositories/new
-
-*Note: If you don't have repo create permissions in the `ASFHyP3` org, ask the
-  Tools team to create you a repo!*
+To create a new plugin, you'll first need to create a new repository on [GitHub](https://github.com) for your plugin.
   
-You should enter a repository name like `hyp3-<process>` where `<process>` is the 
+You should enter a repository name like `hyp3-<PROCESS>` where `<PROCESS>` is the 
 short name of your process (e.g., `hyp3-insar-isce`), write a short (1 sentence)
 description of the plugin (e.g., `HyP3 plugin for <process> processing`) set the 
 repository to "Public", and *do not* click the "Initialize repository with a
@@ -38,8 +32,12 @@ plugin.
 
 ### 2. Setup a development environment
 
-We use a `conda` environments to manage our dependencies; you can get Miniconda
+We use a `conda`/`mamba` environments to manage our dependencies; you can get Mambaforge
 (recommended) here:
+
+https://github.com/conda-forge/miniforge#mambaforge
+
+And you can get Miniconda here:
 
 https://docs.conda.io/en/latest/miniconda.html
 
@@ -67,9 +65,9 @@ We want to push the local copy we just created to our GitHub repository:
 ```bash
 # From hyp3-<process>
 git init .
-git remote add origin git@github.com:ASFHyP3/hyp3-<process>.git
+git remote add origin git@github.com:<GITHUB_USERNAME_OR_ORG>/hyp3-<PROCESS>.git
 git add .
-git commit -m "Minimal HyP3 plugin created with the hyp3plugin cookiecutter"
+git commit -m "Minimal HyP3 plugin created with the hyp3 plugin cookiecutter"
 git push -u origin develop
 ```
 
@@ -94,32 +92,19 @@ Now, go back to the development branch:
 git checkout develop
 ```
 
-### 4. Configure the AWS ECR repository
+### 4. Configure the GitHub repository settings
 
-Create a docker repository for your plugin in the `hyp3-v2-full-access` account:
-   ```bash
-   # Assuming your aws cli is setup to use the hyp3-v2-full-access profile
-   aws ecr create-repository \
-       --repository-name hyp3-<process> \
-       --image-scanning-configuration scanOnPush=true \
-       --region us-west-2
-   ```
-
-### 5. Configure the GitHub repository settings
-
-Once the zeroth release is pushed to GitHub, we need to configure the GitHub repository settings. 
+Once the zeroth release is pushed to GitHub, we need to configure the GitHub repository settings.
+The settings detailed here are not required, but we **STRONGLY** recommend them as they make it much
+ easier for others to collaborate on your project, and for you to control how the collaboration
+occurs.
 
 Go to your repository in GitHub and on the right, click "Settings", then:
 1. In "Options" (left):
-   * In the "Features" section, un-click "Wikis"
    * In the "Merge button" section
      * un-click "Allow squash merging"
      * Make sure "Automatically delete head branches" is clicked
-2. In "Manage access":
-   * click "Invite teams or people" and: 
-     * add "ASFHyP3/Tools" with the "Maintain" role
-     * add "ASFHyP3/automation" with the "Write" role
-3. In "Branches":
+2. In "Branches":
    * make sure the default branch is "develop"
    * Add a "Branch protection rule" for:
      * main:
@@ -127,17 +112,43 @@ Go to your repository in GitHub and on the right, click "Settings", then:
        * click "Require pull request review before merging"
        * click "Dismiss stale pull request approvals when new commits are pushed"
        * click "Require status checks to pass before merging"
+       * click "Do not allow bypassing of the above settings"
        * click "Restrict who can push to matching branches"
        * Create
      * develop:
        * set "Branch name pattern" to "develop"
+       * click "Require pull request review before merging"
        * click "Require status checks to pass before merging"
-       * click "Restrict who can push to matching branches"
-         * add "ASFHyP3/automation" to who can push
+       * click "Do not allow bypassing of the above settings"
        * Create
 
-### 6. Restart the GitHub Actions
+For both the `main` and `develop` you can restrict who can push to the branch.
+In the same page where you set the above options, you can also click "Restrict
+who can push to matching branches", then search and add the desired people/organizations
+who are allowed to push. If you set this, make sure you include the owner of your
+repository in this list - other your GitHub Actions won't work!
+
+For more information on how to contribute to repositories set up in this manner,
+check out GitHub's [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow)
+article
+
+### 5. Restart the GitHub Actions
 
 Now you're all setup! You should be able to navigate to your repository "Actions",
 restart the failed Workflows on `develop`, and watch it create minimal HyP3 plugin 
-container for your process. 
+container for your process.
+
+### 6. Make HyP3 plugin container public
+
+Once the Actions have successfully run, a containerized version of your plugin will be
+available in the GitHub Container Registry (GHCR). You can find this plugin in the "Packages"
+section of your GitHub user/organization account. You can also `pull` it to your local
+machine for use using the command:
+
+`docker pull ghcr.io/<GH_ACCOUNT_NAME>/<GH_REPOSITORY_NAME>`
+
+GHCR containers are private by default. You'll need to manually change the visibility of
+your container to "Public" so that HyP3 can access it. See this [GitHub Documentation](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility#configuring-visibility-of-packages-for-your-personal-account)
+for a step-by-step guide.
+
+
