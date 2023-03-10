@@ -31,7 +31,6 @@ jobs:
       version_tag: {{'${{ needs.call-version-info-workflow.outputs.version_tag }}'}}
       release_branch: main     # Optional; default shown
       develop_branch: develop  # Optional; default shown
-      #FIXME make configurable
-      user: tools-bot          # Optional; default shown
+      user: {{ cookiecutter.github_username }}
     secrets:
       USER_TOKEN: {{'${{ secrets.GITHUB_PAK }}'}}

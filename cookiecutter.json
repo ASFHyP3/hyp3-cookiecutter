@@ -1,4 +1,6 @@
 {
+  "github_username": "",
+  "github_email": "",
   "project_name": "hyp3-plugin",
   "project_title": "{{cookiecutter.project_name|replace('-', ' ')|title|replace('Hyp3', 'HyP3')}}",
   "package_name": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
