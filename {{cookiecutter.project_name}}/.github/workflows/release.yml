@@ -14,4 +14,4 @@ jobs:
       develop_branch: develop
       sync_pr_label: actions-bot
     secrets:
-      USER_TOKEN: ${{ secrets.GITHUB_USER_TOKEN }}
+      USER_TOKEN: ${{ secrets.GITHUB-PAK }}
