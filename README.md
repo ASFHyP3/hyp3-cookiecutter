@@ -65,7 +65,7 @@ We want to push the local copy we just created to our GitHub repository:
 ```bash
 # From hyp3-<process>
 git init .
-git remote add origin git@github.com:<GITHUB_USERNAME_OR_ORG>/hyp3-<process>.git
+git remote add origin git@github.com:<GITHUB_USERNAME_OR_ORG>/hyp3-<PROCESS>.git
 git add .
 git commit -m "Minimal HyP3 plugin created with the hyp3 plugin cookiecutter"
 git push -u origin develop
