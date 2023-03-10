@@ -7,7 +7,8 @@ on:
 
 jobs:
   call-bump-version-workflow:
-    uses: ASFHyP3/actions/.github/workflows/reusable-bump-version.yml@v0.7.0
+    # Docs: https://github.com/ASFHyP3/actions
+    uses: ASFHyP3/actions/.github/workflows/reusable-bump-version.yml@v0.7.1
     with:
       user: {{ cookiecutter.github_username }}
       email: {{ cookiecutter.github_email }}

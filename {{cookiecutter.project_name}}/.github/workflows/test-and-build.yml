@@ -12,18 +12,19 @@ on:
 
 jobs:
   call-pytest-workflow:
-    uses: ASFHyP3/actions/.github/workflows/reusable-pytest.yml@v0.7.0
+    # Docs: https://github.com/ASFHyP3/actions
+    uses: ASFHyP3/actions/.github/workflows/reusable-pytest.yml@v0.7.1
     with:
       local_package_name: {{ cookiecutter.package_name }}
 
   call-version-info-workflow:
-    uses: ASFHyP3/actions/.github/workflows/reusable-version-info.yml@v0.7.0
-    with:
-      python_version: '3.9'        # Optional; default shown
+    # Docs: https://github.com/ASFHyP3/actions
+    uses: ASFHyP3/actions/.github/workflows/reusable-version-info.yml@v0.7.1
 
   call-docker-ghcr-workflow:
     needs: call-version-info-workflow
-    uses: ASFHyP3/actions/.github/workflows/reusable-docker-ghcr.yml@v0.7.0
+    # Docs: https://github.com/ASFHyP3/actions
+    uses: ASFHyP3/actions/.github/workflows/reusable-docker-ghcr.yml@v0.7.1
     with:
       version_tag: {{'${{ needs.call-version-info-workflow.outputs.version_tag }}'}}
       release_branch: main
