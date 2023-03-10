@@ -37,4 +37,4 @@ jobs:
       #FIXME make configurable
       user: tools-bot          # Optional; default shown
     secrets:
-      USER_TOKEN: ${{ secrets.GITHUB-PAK }}
+      USER_TOKEN: ${{ secrets.GITHUB_PAK }}
