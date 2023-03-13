@@ -24,7 +24,7 @@ classifiers=[
 dependencies = [
     # insert python dependencies as list here
 ]
-include_package_data=True
+include_package_data = true
 dynamic = ["version", "readme"]
 
 [project.scripts]
