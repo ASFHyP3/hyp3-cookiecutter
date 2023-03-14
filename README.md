@@ -24,7 +24,7 @@ follow the prompts:
 
 ```bash
 python3 -m pip install cookiecutter
-cookiecutter https://github.com/ASFHyP3/hyp3-cookiecutter.git 
+cookiecutter https://github.com/ASFHyP3/hyp3-cookiecutter.git
 ```
 
 Now, you should have a `hyp3-<process>` directory which contains a minimal HyP3
