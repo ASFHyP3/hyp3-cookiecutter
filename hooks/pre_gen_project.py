@@ -6,6 +6,11 @@ PACKAGE_REGEX = r'^[_a-zA-Z][_a-zA-Z0-9]+$'
 
 project_name = '{{ cookiecutter.project_name }}'
 package_name = '{{ cookiecutter.package_name }}'
+process_name = '{{ cookiecutter.process_name }}'
+
+if package_name == process_name:
+    print('ERROR: package_name and process_name must be different!\n')
+    sys.exit(1)
 
 if not re.match(PROJECT_REGEX, project_name):
     print(f'ERROR: {project_name} is not a valid GitHub project name!\n'
