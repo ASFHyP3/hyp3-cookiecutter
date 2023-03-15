@@ -5,7 +5,7 @@ FROM condaforge/mambaforge:latest
 LABEL org.opencontainers.image.title="{{cookiecutter.project_title}}"
 LABEL org.opencontainers.image.description="{{cookiecutter.short_description}}"
 LABEL org.opencontainers.image.vendor="Alaska Satellite Facility"
-LABEL org.opencontainers.image.authors="ASF APD/Tools Team <uaf-asf-apd@alaska.edu>"
+LABEL org.opencontainers.image.authors="{{cookiecutter.github_username}} <{{cookiecutter.github_email}}>"
 LABEL org.opencontainers.image.licenses="BSD-3-Clause"
 LABEL org.opencontainers.image.url="{{cookiecutter.public_url}}"
 LABEL org.opencontainers.image.source="{{cookiecutter.public_url}}"
