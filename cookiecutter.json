@@ -1,13 +1,13 @@
 {
   "github_username": "username_for_github_actions",
   "github_email": "email_for@github_actions.com",
-  "project_name": "hyp3-plugin",
-  "project_title": "{{cookiecutter.project_name|replace('-', ' ')|title|replace('Hyp3', 'HyP3')}}",
-  "package_name": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
-  "process_name": "{{cookiecutter.package_name|replace('hyp3', 'proc')}}",
-  "process_type": "{{cookiecutter.package_name|replace('hyp3', '')|trim(chars='_')}}",
+  "process_type": "RTC",
   "short_description": "HyP3 plugin for {{cookiecutter.process_type}} processing",
-  "public_url": "https://github.com/ASFHyP3/{{cookiecutter.project_name}}",
+  "public_url": "https://github.com/ASFHyP3/hyp3-{{cookiecutter.process_type}}",
   "copyright_year": "{% now 'utc', '%Y' %}",
-  "_extensions": ["jinja2_time.TimeExtension"]
+  "_extensions": ["jinja2_time.TimeExtension"],
+  "__project_name": "hyp3-{{cookiecutter.process_type}}",
+  "__project_title": "HyP3 {{cookiecutter.process_type}}",
+  "__package_name": "hyp3_{{cookiecutter.process_type}}",
+  "__process_name": "proc_{{cookiecutter.process_type}}"
 }
