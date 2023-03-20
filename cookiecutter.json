@@ -6,8 +6,8 @@
   "public_url": "https://github.com/ASFHyP3/hyp3-{{cookiecutter.process_type}}",
   "copyright_year": "{% now 'utc', '%Y' %}",
   "_extensions": ["jinja2_time.TimeExtension"],
-  "__project_name": "hyp3-{{cookiecutter.process_type}}",
-  "__project_title": "HyP3 {{cookiecutter.process_type}}",
-  "__package_name": "hyp3_{{cookiecutter.process_type}}",
-  "__process_name": "proc_{{cookiecutter.process_type}}"
+  "__project_name": "hyp3-{{cookiecutter.process_type | lower }}",
+  "__project_title": "HyP3 {{cookiecutter.process_type }}",
+  "__package_name": "hyp3_{{cookiecutter.process_type | lower | replace('-', '_')}}",
+  "__process_name": "process_{{cookiecutter.process_type | lower | replace('-', '_')}}"
 }
