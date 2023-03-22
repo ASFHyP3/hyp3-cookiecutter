@@ -3,7 +3,7 @@ import sys
 
 PROCESS_REGEX = r'^[\-_a-zA-Z0-9]+$'
 PROJECT_REGEX = r'^[_a-zA-Z][\-_a-zA-Z0-9]+$'
-PACKAGE_REGEX = r'^[_a-zA-Z][_a-zA-Z0-9]+$'
+PACKAGE_REGEX = r'^[_a-z][_a-z0-9]+$'
 
 process_name = '{{ cookiecutter.__process_name }}'
 project_name = '{{ cookiecutter.__project_name }}'
