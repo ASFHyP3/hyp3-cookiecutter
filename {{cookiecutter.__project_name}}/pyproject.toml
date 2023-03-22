@@ -26,10 +26,6 @@ dependencies = [
 ]
 dynamic = ["version", "readme"]
 
-[project.scripts]
-{{ cookiecutter.__package_name }} = "{{ cookiecutter.__package_name }}.__main__:main"
-{{ cookiecutter.__process_name }} = "{{ cookiecutter.__package_name }}.process:main"
-
 [project.optional-dependencies]
 develop = [
     "flake8",
