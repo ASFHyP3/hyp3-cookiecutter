@@ -5,6 +5,7 @@
 import argparse
 import logging
 from importlib.metadata import version
+from pathlib import Path
 
 __version__ = version('{{cookiecutter.__package_name}}')
 
