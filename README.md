@@ -133,13 +133,45 @@ For more information on how to contribute to repositories set up in this manner,
 check out GitHub's [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow)
 article
 
-### 6. Restart the GitHub Actions
+### 6. Create a personal access key for GitHub Actions
+
+Some of the GitHub actions (`release.yml` and `tag-version.yml` need extra permissions to work
+properly. These actions will attempt to use the `GITHUB_PAK` secret to assume a user profile
+with the needed permissions and we'll need to create these permissions/secret.
+
+1. In your user/organization settings:
+    * Click on Developer Settings
+    * Click on Personal access tokens
+    * Click Tokens (classic)
+    * Click Generate new token
+    * Click Generate new token (classic)
+    * In the note section give the token a name (e.g., `GITHUB_PAK`)
+    * Check the boxes for:
+        * repo
+        * workflow
+        * write:packages
+        * See [GITHUB_PAK permissions section screenshot](#GITHU_PAK-permissions) for configuration image
+    * Click Generate token
+    * Copy your access token and save it for the next step
+2. In your HyP3 plugin repository:
+    * Click on Settings
+    * Click on Secrets and variables
+    * Click on Actions
+    * Click on New repository Secret
+    * Name your secret `GITHUB_PAK`
+    * Paste in the access token you save from the last step
+    * Click Add secret
+
+This access token will regularly expire unless you set them to last forever (which we don't recommend)
+so make sure to keep the token current and the secret up to date!
+
+### 7. Restart the GitHub Actions
 
 Now you're all setup! You should be able to navigate to your repository "Actions",
 restart the failed Workflows on `develop`, and watch it create minimal HyP3 plugin 
 container for your process.
 
-### 7. Make HyP3 plugin container public
+### 8. Make HyP3 plugin container public
 
 Once the Actions have successfully run, a containerized version of your plugin will be
 available in the GitHub Container Registry (GHCR). You can find this plugin in the "Packages"
@@ -162,3 +194,8 @@ for a step-by-step guide.
 
 ### Develop Branch Rules
 ![Develop Branch Rules screenshot](assets/develop_rules.png)
+
+### GITHUB_PAK Permissions
+![GITHUB_PAK Permissions screenshot](assets/PAK_permissions.png)
+
+
