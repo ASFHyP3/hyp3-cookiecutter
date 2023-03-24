@@ -114,12 +114,14 @@ Go to your repository in GitHub and on the right, click "Settings", then:
        * click "Do not allow bypassing of the above settings"
        * click "Restrict who can push to matching branches"
        * Create
+       * See [Main branch rules section screenshot](#main-branch-rules) for configuration image
      * develop:
        * set "Branch name pattern" to "develop"
        * click "Require pull request review before merging"
        * click "Require status checks to pass before merging"
        * click "Do not allow bypassing of the above settings"
        * Create
+       * See [Develop branch rules section screenshot](#develop-branch-rules) for configuration image
 
 For both the `main` and `develop` you can restrict who can push to the branch.
 In the same page where you set the above options, you can also click "Restrict
@@ -150,7 +152,13 @@ GHCR containers are private by default. You'll need to manually change the visib
 your container to "Public" so that HyP3 can access it. See this [GitHub Documentation](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility#configuring-visibility-of-packages-for-your-personal-account)
 for a step-by-step guide.
 
-### Screenshots
+## Screenshots
 
-#### PR Rules
+### PR Rules
 ![PR Rules screenshot](assets/PR_rules.png)
+
+### Main Branch Rules
+![Main Branch Rules screenshot](assets/main_rules.png)
+
+### Develop Branch Rules
+![Develop Branch Rules screenshot](assets/develop_rules.png)
