@@ -42,8 +42,6 @@ Homepage = "{{ cookiecutter.public_url }}"
 Documentation = "https://hyp3-docs.asf.alaska.edu"
 
 [tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "-ra -q"
 testpaths = ["tests"]
 script_launch_mode = "subprocess"
 
