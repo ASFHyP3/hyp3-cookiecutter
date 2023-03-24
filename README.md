@@ -153,4 +153,4 @@ for a step-by-step guide.
 ### Screenshots
 
 #### PR Rules
-![PR Rules screenshot](assets/pr_rules.png)
+![PR Rules screenshot](assets/PR_rules.png)
