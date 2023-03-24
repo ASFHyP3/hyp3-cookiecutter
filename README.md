@@ -26,7 +26,7 @@ Next, we'll need to create a new repository on [GitHub](https://github.com) for 
 Make sure to create your repository in the same user/organization account you set in the
 `<GITHUB_USERNAME>` field of the cookiecutter.
 
-You repository name should be the same as the directory name for the plugin you created
+Your repository name should be the same as the directory name for the plugin you created
 on your local develop machine. (e.g., `hyp3-<PROCESS_TYPE>`). For the description section,
 you can copy in the short description you created in the cookiecutter step. You can find this
 in your newly-generated, `README.md` file, or in your command line history. Next, set the 
