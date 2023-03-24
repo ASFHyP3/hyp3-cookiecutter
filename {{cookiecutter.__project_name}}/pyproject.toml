@@ -41,6 +41,9 @@ develop = [
 Homepage = "{{ cookiecutter.public_url }}"
 Documentation = "https://hyp3-docs.asf.alaska.edu"
 
+[project.scripts]
+{{ cookiecutter.__process_name }} = "{{ cookiecutter.__package_name }}.process:main"
+
 [tool.setuptools]
 include-package-data = true
 zip-safe = false
