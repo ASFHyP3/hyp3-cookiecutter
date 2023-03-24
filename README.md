@@ -5,19 +5,9 @@ generate a new HyP3 Plugin.
 
 ## Usage
 
-### 0. Create a repository on GitHub
-
-To create a new plugin, you'll first need to create a new repository on [GitHub](https://github.com) for your plugin.
-  
-You should enter a repository name like `hyp3-<PROCESS>` where `<PROCESS>` is the 
-short name of your process (e.g., `hyp3-insar-isce`), write a short (1 sentence)
-description of the plugin (e.g., `HyP3 plugin for <process> processing`) set the 
-repository to "Public", and *do not* click the "Initialize repository with a
-README" box (or add a `.gitignore` or add a license). 
-
-
 ### 1. Create the plugin with Cookiecutter
 
+To create a new plugin, you'll first need to run the cookicutter.
 From a terminal on your local development machine, navigate to where you'd like 
 to create the local copy of the plugin's repository. Then run cookiecutter and 
 follow the prompts:
@@ -30,7 +20,20 @@ cookiecutter https://github.com/ASFHyP3/hyp3-cookiecutter.git
 Now, you should have a `hyp3-<process>` directory which contains a minimal HyP3
 plugin.
 
-### 2. Setup a development environment
+### 2. Create a repository on GitHub
+
+Next, we'll need to create a new repository on [GitHub](https://github.com) for your plugin.
+Make sure to create your repository in the same user/organization account you set in the
+`<GITHUB_USERNAME>` field of the cookiecutter.
+
+You repository name should be the same as the directory name for the plugin you created
+on your local develop machine. (e.g., `hyp3-<PROCESS_NAME>`). For the description section,
+you can copy in the short description you created in the cookiecutter step. You can find this
+in your newly-generated, `README.md` file, or in your command line history. Next, set the 
+repository to "Public", and *do not* click the "Initialize repository with a
+README" box (or add a `.gitignore` or add a license). 
+
+### 3. Setup a development environment
 
 We use a `conda`/`mamba` environments to manage our dependencies; you can get Mambaforge
 (recommended) here:
@@ -58,7 +61,7 @@ file and then update your environment with
 conda env update -f environment.yml
 ```
 
-### 3. Push the repository to GitHub
+### 4. Push the repository to GitHub
 
 We want to push the local copy we just created to our GitHub repository:
 
@@ -92,7 +95,7 @@ Now, go back to the development branch:
 git checkout develop
 ```
 
-### 4. Configure the GitHub repository settings
+### 5. Configure the GitHub repository settings
 
 Once the zeroth release is pushed to GitHub, we need to configure the GitHub repository settings.
 The settings detailed here are not required, but we **STRONGLY** recommend them as they make it much
@@ -132,13 +135,13 @@ For more information on how to contribute to repositories set up in this manner,
 check out GitHub's [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow)
 article
 
-### 5. Restart the GitHub Actions
+### 6. Restart the GitHub Actions
 
 Now you're all setup! You should be able to navigate to your repository "Actions",
 restart the failed Workflows on `develop`, and watch it create minimal HyP3 plugin 
 container for your process.
 
-### 6. Make HyP3 plugin container public
+### 7. Make HyP3 plugin container public
 
 Once the Actions have successfully run, a containerized version of your plugin will be
 available in the GitHub Container Registry (GHCR). You can find this plugin in the "Packages"
