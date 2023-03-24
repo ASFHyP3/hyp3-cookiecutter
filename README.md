@@ -27,7 +27,7 @@ Make sure to create your repository in the same user/organization account you se
 `<GITHUB_USERNAME>` field of the cookiecutter.
 
 You repository name should be the same as the directory name for the plugin you created
-on your local develop machine. (e.g., `hyp3-<PROCESS_NAME>`). For the description section,
+on your local develop machine. (e.g., `hyp3-<PROCESS_TYPE>`). For the description section,
 you can copy in the short description you created in the cookiecutter step. You can find this
 in your newly-generated, `README.md` file, or in your command line history. Next, set the 
 repository to "Public", and *do not* click the "Initialize repository with a
@@ -68,16 +68,10 @@ We want to push the local copy we just created to our GitHub repository:
 ```bash
 # From hyp3-<process>
 git init .
-git remote add origin git@github.com:<GITHUB_USERNAME_OR_ORG>/hyp3-<PROCESS>.git
+git remote add origin https://github.com/<GITHUB_USERNAME>/hyp3-<PROCESS_TYPE>.git
 git add .
 git commit -m "Minimal HyP3 plugin created with the hyp3 plugin cookiecutter"
-git push -u origin develop
-```
-
-And a main (for production releases) branch:
-
-```bash
-git checkout -b main
+git branch -M main
 git push -u origin main
 ```
 
@@ -89,10 +83,11 @@ git tag -a v0.0.0 -m "Marking zeroth release for auto-versioning and CI/CD Tooli
 git push --tags
 ```
 
-Now, go back to the development branch:
+Then add a development branch:
 
 ```bash
-git checkout develop
+git checkout -b develop
+git push -u origin develop
 ```
 
 ### 5. Configure the GitHub repository settings
