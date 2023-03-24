@@ -49,7 +49,7 @@ development environment with all the necessary dependencies
 
 ```bash
 cd hyp3-<process>
-conda env create -f conda_env.yml
+conda env create -f environment.yml
 conda activate hyp3-<process>
 ``` 
 
