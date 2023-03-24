@@ -4,7 +4,6 @@
 
 import argparse
 import logging
-from pathlib import Path
 
 from {{cookiecutter.__package_name}} import __version__
 
