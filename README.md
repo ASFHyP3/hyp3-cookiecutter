@@ -150,7 +150,7 @@ with the needed permissions and we'll need to create these permissions/secret.
         * repo
         * workflow
         * write:packages
-        * See [GITHUB_PAK permissions section screenshot](#GITHU_PAK-permissions) for configuration image
+        * See [GITHUB_PAK permissions section screenshot](#github_pak-permissions) for configuration image
     * Click Generate token
     * Copy your access token and save it for the next step
 2. In your HyP3 plugin repository:
