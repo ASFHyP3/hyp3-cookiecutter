@@ -41,6 +41,10 @@ develop = [
 Homepage = "{{ cookiecutter.public_url }}"
 Documentation = "https://hyp3-docs.asf.alaska.edu"
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+script_launch_mode = "subprocess"
+
 [tool.setuptools]
 include-package-data = true
 zip-safe = false
