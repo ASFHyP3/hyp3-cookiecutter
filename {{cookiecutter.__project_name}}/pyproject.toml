@@ -41,8 +41,11 @@ develop = [
 Homepage = "{{ cookiecutter.public_url }}"
 Documentation = "https://hyp3-docs.asf.alaska.edu"
 
-[project.scripts]
-{{ cookiecutter.__process_name }} = "{{ cookiecutter.__package_name }}.process:main"
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
+script_launch_mode = "subprocess"
 
 [tool.setuptools]
 include-package-data = true
