@@ -150,7 +150,3 @@ GHCR containers are private by default. You'll need to manually change the visib
 your container to "Public" so that HyP3 can access it. See this [GitHub Documentation](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility#configuring-visibility-of-packages-for-your-personal-account)
 for a step-by-step guide.
 
-### Screenshots
-
-#### PR Rules
-![PR Rules screenshot](assets/pr_rules.png)
