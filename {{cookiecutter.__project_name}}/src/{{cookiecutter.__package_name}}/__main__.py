@@ -8,7 +8,7 @@ from hyp3lib.aws import upload_file_to_s3
 from hyp3lib.image import create_thumbnail
 
 
-import {{cookiecutter.__package_name}}
+from {{cookiecutter.__package_name}}.process import {{cookiecutter.__process_name}}
 
 
 def main():
@@ -28,7 +28,7 @@ def main():
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                         datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
 
-    product_file = {{cookiecutter.__package_name}}.{{cookiecutter.__process_name}}(
+    product_file = {{cookiecutter.__process_name}}(
         greeting=args.greeting,
     )
 
