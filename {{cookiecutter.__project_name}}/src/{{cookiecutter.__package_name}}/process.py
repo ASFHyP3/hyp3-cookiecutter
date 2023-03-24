@@ -4,8 +4,9 @@
 
 import argparse
 import logging
+from importlib.metadata import version
 
-from {{cookiecutter.__package_name}} import __version__
+__version__ = version({{cookiecutter.__package_name}})
 
 log = logging.getLogger(__name__)
 
