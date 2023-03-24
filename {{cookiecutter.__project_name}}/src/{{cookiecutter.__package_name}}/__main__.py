@@ -29,7 +29,7 @@ def main():
                         datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
 
     product_file = {{cookiecutter.__package_name}}.{{cookiecutter.__process_name}}(
-            gretting=args.greeting,
+        greeting=args.greeting,
     )
 
     if args.bucket:
