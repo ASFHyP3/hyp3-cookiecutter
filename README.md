@@ -98,8 +98,8 @@ The settings detailed here are not required, but we **STRONGLY** recommend them 
 occurs.
 
 Go to your repository in GitHub and on the right, click "Settings", then:
-1. In "Options" (left):
-   * In the "Merge button" section
+1. In main page:
+   * In the "Pull Requests" section
      * un-click "Allow squash merging"
      * Make sure "Automatically delete head branches" is clicked
      * See [Pull Request section screenshot](#pr-rules) for configuration image
