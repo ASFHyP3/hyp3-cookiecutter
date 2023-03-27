@@ -135,9 +135,9 @@ article
 
 ### 6. Create a personal access key for GitHub Actions
 
-Some of the GitHub actions (`release.yml` and `tag-version.yml` need extra permissions to work
+Some of the GitHub actions (`release.yml` and `tag-version.yml`) need extra permissions to work
 properly. These actions will attempt to use the `GITHUB_PAK` secret to assume a user profile
-with the needed permissions and we'll need to create these permissions/secret.
+with the needed permissions, so we'll need to create the permissions/secret.
 
 1. In your user/organization settings:
     * Click on Developer Settings
