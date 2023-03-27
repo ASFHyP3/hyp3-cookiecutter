@@ -8,12 +8,12 @@ from hyp3lib.aws import upload_file_to_s3
 from hyp3lib.image import create_thumbnail
 
 
-import {{cookiecutter.package_name}}
+from {{cookiecutter.__package_name}}.process import {{cookiecutter.__process_name}}
 
 
 def main():
     """
-    HyP3 entrypoint for {{cookiecutter.package_name}}
+    HyP3 entrypoint for {{cookiecutter.__package_name}}
     """
     parser = ArgumentParser()
     parser.add_argument('--bucket', help='AWS S3 bucket HyP3 for upload the final product(s)')
@@ -28,8 +28,8 @@ def main():
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                         datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
 
-    product_file = {{cookiecutter.package_name}}.{{cookiecutter.process_name}}(
-            gretting=args.greeting,
+    product_file = {{cookiecutter.__process_name}}(
+        greeting=args.greeting,
     )
 
     if args.bucket:

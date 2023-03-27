@@ -1,6 +1,0 @@
-include LICENSE
-include README.md
-
-graft {{cookiecutter.package_name}}
-
-global-exclude *.py[cod] __pycache__ *.so

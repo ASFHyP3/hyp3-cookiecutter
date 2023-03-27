@@ -61,7 +61,7 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement by emailing the
-ASF APD/Tools team at [UAF-asf-apd@alaska.edu](mailto:UAF-asf-apd@alaska.edu).
+development team at [{{cookiecutter.github_email}}](mailto:{{cookiecutter.github_email}}).
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the

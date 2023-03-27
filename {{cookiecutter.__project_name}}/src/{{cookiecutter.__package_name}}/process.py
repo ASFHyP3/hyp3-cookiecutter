@@ -6,12 +6,12 @@ import argparse
 import logging
 from pathlib import Path
 
-from {{cookiecutter.package_name}} import __version__
+from {{cookiecutter.__package_name}} import __version__
 
 log = logging.getLogger(__name__)
 
 
-def {{cookiecutter.process_name}}(greeting: str = 'Hello world!') -> Path:
+def {{cookiecutter.__process_name}}(greeting: str = 'Hello world!') -> Path:
     """Create a greeting product
 
     Args:
@@ -24,9 +24,9 @@ def {{cookiecutter.process_name}}(greeting: str = 'Hello world!') -> Path:
 
 
 def main():
-    """{{cookiecutter.process_name}} entrypoint"""
+    """{{cookiecutter.__process_name}} entrypoint"""
     parser = argparse.ArgumentParser(
-        prog='{{cookiecutter.process_name}}',
+        prog='{{cookiecutter.__process_name}}',
         description=__doc__,
     )
     parser.add_argument('--greeting', default='Hello world!',
@@ -34,7 +34,7 @@ def main():
     parser.add_argument('--version', action='version', version=f'%(prog)s {__version__}')
     args = parser.parse_args()
 
-    {{cookiecutter.process_name}}(**args.__dict__)
+    {{cookiecutter.__process_name}}(**args.__dict__)
 
 
 if __name__ == "__main__":
