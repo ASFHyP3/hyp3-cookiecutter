@@ -44,5 +44,5 @@ RUN mamba env create -f /{{cookiecutter.__project_name}}/environment.yml && \
     sed -i 's/conda activate base/conda activate {{cookiecutter.__project_name}}/g' /home/conda/.profile && \
     python -m pip install --no-cache-dir /{{cookiecutter.__project_name}}
 
-ENTRYPOINT ["/{{cookiecutter.__project_name}}/{{cookiecutter.__package_name}}/src/etc/entrypoint.sh"]
+ENTRYPOINT ["/{{cookiecutter.__project_name}}/src/{{cookiecutter.__package_name}}/etc/entrypoint.sh"]
 CMD ["-h"]
