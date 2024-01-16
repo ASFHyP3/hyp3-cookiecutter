@@ -22,6 +22,7 @@ classifiers=[
     "Programming Language :: Python :: 3.11",
 ]
 dependencies = [
+    "hyp3lib>=3,<4",
     # insert python dependencies as list here
 ]
 dynamic = ["version", "readme"]
