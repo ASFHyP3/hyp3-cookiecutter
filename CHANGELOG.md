@@ -8,7 +8,7 @@ and uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.1.3]
 ### Changed
-* Upgraded to `hyp3lib=>3,<4` from `>=2,<3`
+* Upgraded to `hyp3lib=>3,<4`.
 
 ## [0.1.2]
 ### Fixed
