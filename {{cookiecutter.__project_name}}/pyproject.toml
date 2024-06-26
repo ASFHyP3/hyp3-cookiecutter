@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "{{ cookiecutter.__package_name }}"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 authors = [
     {name="{{ cookiecutter.github_username }}", email="{{ cookiecutter.github_email }}"},
 ]
@@ -16,10 +16,9 @@ classifiers=[
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
     "hyp3lib>=3,<4",
