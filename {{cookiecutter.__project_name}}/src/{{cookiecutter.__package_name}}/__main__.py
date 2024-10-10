@@ -1,20 +1,15 @@
-"""
-{{cookiecutter.process_type}} processing for HyP3
-"""
+"""{{cookiecutter.process_type}} processing for HyP3."""
 import logging
 from argparse import ArgumentParser
 
 from hyp3lib.aws import upload_file_to_s3
 from hyp3lib.image import create_thumbnail
 
-
 from {{cookiecutter.__package_name}}.process import {{cookiecutter.__process_name}}
 
 
-def main():
-    """
-    HyP3 entrypoint for {{cookiecutter.__package_name}}
-    """
+def main() -> None:
+    """HyP3 entrypoint for {{cookiecutter.__package_name}}."""
     parser = ArgumentParser()
     parser.add_argument('--bucket', help='AWS S3 bucket HyP3 for upload the final product(s)')
     parser.add_argument('--bucket-prefix', default='', help='Add a bucket prefix to product(s)')
