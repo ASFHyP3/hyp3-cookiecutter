@@ -4,6 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "{{ cookiecutter.__package_name }}"
+readme = "README.md"
 requires-python = ">=3.10"
 authors = [
     {name="{{ cookiecutter.github_username }}", email="{{ cookiecutter.github_email }}"},
@@ -19,12 +20,13 @@ classifiers=[
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
     "hyp3lib>=3,<4",
-    # insert python dependencies as list here
+    # TODO: insert Python dependencies as list here
 ]
-dynamic = ["version", "readme"]
+dynamic = ["version"]
 
 [project.optional-dependencies]
 develop = [
@@ -45,9 +47,6 @@ script_launch_mode = "subprocess"
 [tool.setuptools]
 include-package-data = true
 zip-safe = false
-
-[tool.setuptools.dynamic]
-readme = {file = ["README.md"], content-type = "text/markdown"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
