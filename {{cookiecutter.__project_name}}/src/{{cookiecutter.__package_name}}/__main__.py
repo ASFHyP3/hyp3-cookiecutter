@@ -15,13 +15,13 @@ def main() -> None:
     parser.add_argument('--bucket-prefix', default='', help='Add a bucket prefix to product(s)')
 
     # TODO: Your arguments here
-    parser.add_argument('--greeting', default='Hello world!',
-                        help='Write this greeting to a product file')
+    parser.add_argument('--greeting', default='Hello world!', help='Write this greeting to a product file')
 
     args = parser.parse_args()
 
-    logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
-                        datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
+    logging.basicConfig(
+        format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO
+    )
 
     product_file = {{cookiecutter.__process_name}}(
         greeting=args.greeting,
