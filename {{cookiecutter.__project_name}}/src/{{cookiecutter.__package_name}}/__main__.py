@@ -1,4 +1,5 @@
 """{{cookiecutter.process_type}} processing for HyP3."""
+
 import logging
 from argparse import ArgumentParser
 
