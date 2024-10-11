@@ -6,15 +6,11 @@ dependencies:
   - python>=3.10
   - pip
   # For packaging, and testing
-  - flake8
-  - flake8-import-order
-  - flake8-blind-except
-  - flake8-builtins
-  - setuptools
+  - ruff
   - setuptools_scm
-  - wheel
   - pytest
   - pytest-console-scripts
   - pytest-cov
   # For running
   - hyp3lib>=3,<4
+  # TODO: insert conda-forge dependencies as list here

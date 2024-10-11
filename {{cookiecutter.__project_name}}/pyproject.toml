@@ -4,6 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "{{ cookiecutter.__package_name }}"
+readme = "README.md"
 requires-python = ">=3.10"
 authors = [
     {name="{{ cookiecutter.github_username }}", email="{{ cookiecutter.github_email }}"},
@@ -19,19 +20,17 @@ classifiers=[
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
     "hyp3lib>=3,<4",
-    # insert python dependencies as list here
+    # TODO: insert Python dependencies as list here
 ]
-dynamic = ["version", "readme"]
+dynamic = ["version"]
 
 [project.optional-dependencies]
 develop = [
-    "flake8",
-    "flake8-import-order",
-    "flake8-blind-except",
-    "flake8-builtins",
+    "ruff",
     "pytest",
     "pytest-cov",
     "pytest-console-scripts",
@@ -49,10 +48,34 @@ script_launch_mode = "subprocess"
 include-package-data = true
 zip-safe = false
 
-[tool.setuptools.dynamic]
-readme = {file = ["README.md"], content-type = "text/markdown"}
-
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools_scm]
+
+[tool.ruff]
+line-length = 120
+src = ["src", "tests"]
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "single"
+
+[tool.ruff.lint]
+extend-select = [
+    "I",   # isort: https://docs.astral.sh/ruff/rules/#isort-i
+    "UP",  # pyupgrade: https://docs.astral.sh/ruff/rules/#pyupgrade-up
+    "D",   # pydocstyle: https://docs.astral.sh/ruff/rules/#pydocstyle-d
+    "ANN", # annotations: https://docs.astral.sh/ruff/rules/#flake8-annotations-ann
+    "PTH", # use-pathlib-pth: https://docs.astral.sh/ruff/rules/#flake8-use-pathlib-pth
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+lines-after-imports = 2
+
+[tool.ruff.lint.extend-per-file-ignores]
+"tests/*" = ["D100", "D103", "ANN"]

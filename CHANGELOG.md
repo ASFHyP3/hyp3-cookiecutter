@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [PEP 440](https://www.python.org/dev/peps/pep-0440/) 
 and uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0]
+### Added
+* Support for Python 3.13
+* Workflow action to keep the reusable CI/CD action up to date within the cookiecutter template
+
+### Changed
+* Now uses ruff for linting and formatting instead of flake8
+
+### Removed
+* The unused `process.main` function as we don't register it as a console script entrypoint
+
+### Fixed
+* Tests using the `script_runner` fixture will no longer raise usage warnings 
+
 ## [0.2.0]
 ### Removed
 * Support for Python 3.8 and 3.9 has been dropped. The minimum version is now 3.10.
