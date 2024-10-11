@@ -13,4 +13,4 @@ dependencies:
   - pytest-cov
   # For running
   - hyp3lib>=3,<4
-  # TODO: # TODO: insert conda-forge dependencies as list here
+  # TODO: insert conda-forge dependencies as list here
