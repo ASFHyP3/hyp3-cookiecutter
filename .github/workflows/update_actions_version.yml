@@ -35,7 +35,7 @@ jobs:
 
       - name: Open PR
         env:
-          PR_TITLE: Update ASFHyP3/actions version to ${{ env.ACTIONS_VERSION }}
+          PR_TITLE: Update ASFHyP3/actions version to ${{ github.event.inputs.version }}
           PR_BODY: PR created by a new `v*` tag push event
           GH_TOKEN: ${{ secrets.TOOLS_BOT_PAK }}
         run: |
