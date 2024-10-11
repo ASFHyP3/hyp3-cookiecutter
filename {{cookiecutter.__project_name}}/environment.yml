@@ -7,11 +7,10 @@ dependencies:
   - pip
   # For packaging, and testing
   - ruff
-  - setuptools
   - setuptools_scm
-  - wheel
   - pytest
   - pytest-console-scripts
   - pytest-cov
   # For running
   - hyp3lib>=3,<4
+  # TODO: insert conda-forge dependencies as list here

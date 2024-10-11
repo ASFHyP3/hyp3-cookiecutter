@@ -1,0 +1,42 @@
+name: Update ASFHyP3/actions version
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to set all ASFHyP3/actions to'
+        required: true
+        type: string
+
+jobs:
+  update_actions_examples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.TOOLS_BOT_PAK }}
+
+      - name: Create update branch
+        id: update
+        env:
+          ACTIONS_VERSION: ${{ github.event.inputs.version }}
+        run: |
+          git config user.name "tools-bot"
+          git config user.email "UAF-asf-apd@alaska.edu"
+
+          export UPDATE_BRANCH=update-actions-to-${ACTIONS_VERSION}
+          git switch -c ${UPDATE_BRANCH}
+          
+          export SEARCH_PATTERN='(ASFHyP3/actions/.github/workflows/.*.yml)@v[0-9]+\.[0-9]+\.[0-9]+'
+          find -iwholename "*/workflows/*.yml" -exec sed -i -r "s|$SEARCH_PATTERN|\1@${ACTIONS_VERSION}|g" {} \; 
+          
+          git commit -am "Bump actions ASFHyP3/actions version to ${ACTIONS_VERSION}"
+          git push origin ${UPDATE_BRANCH}
+
+      - name: Open PR
+        env:
+          PR_TITLE: Update ASFHyP3/actions version to ${{ env.ACTIONS_VERSION }}
+          PR_BODY: PR created by a new `v*` tag push event
+          GH_TOKEN: ${{ secrets.TOOLS_BOT_PAK }}
+        run: |
+          gh pr create -t "${PR_TITLE}" -b "${PR_BODY}" -l tools-bot -l bumpless -B develop

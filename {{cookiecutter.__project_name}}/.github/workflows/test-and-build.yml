@@ -17,7 +17,7 @@ jobs:
     with:
       local_package_name: {{ cookiecutter.__package_name }}
       python_versions: >-
-        ["3.10", "3.11", "3.12"]
+        ["3.10", "3.11", "3.12", "3.13"]
 
   call-version-info-workflow:
     # Docs: https://github.com/ASFHyP3/actions
