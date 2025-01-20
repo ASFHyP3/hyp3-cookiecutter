@@ -12,7 +12,7 @@ and uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Update `mypy` options in `pyproject.toml`.
 
 ### Fixed
-- Use `TOOLS_BOT_PAK` as recommended by the https://github.com/ASFHyP3/actions README.
+- Use `TOOLS_BOT_PAK` in cookiecutter workflows as recommended by the https://github.com/ASFHyP3/actions README.
 
 ## [0.3.2]
 ### Changed
