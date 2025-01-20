@@ -11,6 +11,9 @@ and uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Upgrade to `ASFHyP3/actions` v0.15.0 in cookiecutter workflows.
 - Update `mypy` options in `pyproject.toml`.
 
+### Fixed
+- Use `TOOLS_BOT_PAK` as recommended by the https://github.com/ASFHyP3/actions README.
+
 ## [0.3.2]
 ### Changed
 - The [`static-analysis`]({{cookiecutter.__project_name}}/.github/workflows/static-analysis.yml) Github Actions workflow now includes `mypy` for type checking.
