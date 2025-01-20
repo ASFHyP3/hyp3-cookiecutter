@@ -8,7 +8,7 @@ and uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.3.3]
 ### Changed
-- Upgrade to `ASFHyP3/actions` v0.15.0 in GitHub Actions workflows.
+- Upgrade to `ASFHyP3/actions` v0.15.0 in cookiecutter workflows.
 - Update `mypy` options in `pyproject.toml`.
 
 ## [0.3.2]
