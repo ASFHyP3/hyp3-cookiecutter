@@ -53,8 +53,11 @@ where = ["src"]
 
 [tool.setuptools_scm]
 
+# Please keep the following ruff options up-to-date with https://github.com/ASFHyP3/actions/#reusable-ruffyml
 [tool.ruff]
 line-length = 120
+# The directories to consider when resolving first- vs. third-party imports.
+# See: https://docs.astral.sh/ruff/settings/#src
 src = ["src", "tests"]
 
 [tool.ruff.format]
@@ -80,6 +83,7 @@ lines-after-imports = 2
 [tool.ruff.lint.extend-per-file-ignores]
 "tests/*" = ["D100", "D103", "ANN"]
 
+# Please keep the following mypy options up-to-date with https://github.com/ASFHyP3/actions/#reusable-mypyyml
 [tool.mypy]
 python_version = "3.10"
 warn_redundant_casts = true
@@ -87,3 +91,7 @@ warn_unused_ignores = true
 warn_unreachable = true
 strict_equality = true
 check_untyped_defs = true
+install_types = true
+non_interactive = true
+pretty = true
+disable_error_code = ["import-untyped"]
