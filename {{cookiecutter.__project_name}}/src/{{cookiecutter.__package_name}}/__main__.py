@@ -4,7 +4,6 @@ import logging
 from argparse import ArgumentParser
 
 from hyp3lib.aws import upload_file_to_s3
-from hyp3lib.image import create_thumbnail
 
 from {{cookiecutter.__package_name}}.process import {{cookiecutter.__process_name}}
 
@@ -30,11 +29,6 @@ def main() -> None:
 
     if args.bucket:
         upload_file_to_s3(product_file, args.bucket, args.bucket_prefix)
-        browse_images = product_file.with_suffix('.png')
-        for browse in browse_images:
-            thumbnail = create_thumbnail(browse)
-            upload_file_to_s3(browse, args.bucket, args.bucket_prefix)
-            upload_file_to_s3(thumbnail, args.bucket, args.bucket_prefix)
 
 
 if __name__ == '__main__':
