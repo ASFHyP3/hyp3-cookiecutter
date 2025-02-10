@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [PEP 440](https://www.python.org/dev/peps/pep-0440/) 
 and uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0]
+### Changed
+- In the generated project, ruff and mypy dependencies are now statically pinned and kept up to date with dependabot to prevent updates introducing unexpected static analysis failures  
+
+### Fixed
+- Added mypy to the generated Python package's optional `develop` dependencies
+- Updates the generated `CHANGELOG.md` to better match the general styles used in HyP3 repositories 
+- Ensured the generated Python package passes ruff, mypy, and pytest checks
+
+### Removed
+- Removed the broken browse image generation and upload example code
+- Removed the generated Code of Conduct file to instead prefer a GitHub organization level one 
+
 ## [0.3.3]
 ### Changed
 - Upgrade to `ASFHyP3/actions` v0.15.0 in cookiecutter workflows.
