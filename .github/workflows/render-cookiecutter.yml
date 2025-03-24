@@ -22,5 +22,5 @@ jobs:
         cookiecutterValues: '{
             "github_username": "foo-bar",
             "github_email": "foo@bar.com",
-            "process_type": "foo-bar",
+            "process_type": "foo-bar"
           }'
