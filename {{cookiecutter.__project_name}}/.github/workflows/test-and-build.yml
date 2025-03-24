@@ -28,9 +28,9 @@ jobs:
     # Docs: https://github.com/ASFHyP3/actions
     uses: ASFHyP3/actions/.github/workflows/reusable-docker-ghcr.yml@v0.17.1
     with:
-      version_tag: {{'${{ needs.call-version-info-workflow.outputs.version_tag }}'}}
+      version_tag: {{ '${{ needs.call-version-info-workflow.outputs.version_tag }}' }}
       release_branch: main
       develop_branch: develop
       user: {{ cookiecutter.github_username }}
     secrets:
-      USER_TOKEN: {{'${{ secrets.GITHUB_TOKEN }}'}}
+      USER_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}

@@ -1,4 +1,4 @@
-"""{{cookiecutter.short_description}}"""
+"""{{ cookiecutter.short_description }}"""
 
 from importlib.metadata import version
 
