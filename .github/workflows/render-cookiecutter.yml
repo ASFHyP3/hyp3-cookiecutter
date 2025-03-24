@@ -1,0 +1,28 @@
+name: Render Cookiecutter
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4.2.2
+      with:
+        path: hyp3-cookiecutter
+
+    - name: Render Cookiecutter
+      uses: andrewthetechie/gha-cookiecutter@v1.3.2
+      with:
+        template: ./hyp3-cookiecutter
+        cookiecutterValues: '{
+            "github_username": "foobar",
+            "github_email": "foo@bar.com",
+            "process_type": "foo-bar",
+            "short_description": "HyP3 plugin for foo-bar processing.",
+            "public_url": "https://github.com/ASFHyP3/hyp3-foo-bar",
+            "copyright_year": "2025",
+          }'
