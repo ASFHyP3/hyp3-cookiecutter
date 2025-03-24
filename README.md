@@ -7,7 +7,7 @@ generate a new HyP3 Plugin.
 
 ### 1. Create the plugin with Cookiecutter
 
-To create a new plugin, you'll first need to run the cookicutter.
+To create a new plugin, you'll first need to run the cookiecutter.
 From a terminal on your local development machine, navigate to where you'd like 
 to create the local copy of the plugin's repository. Then run cookiecutter and 
 follow the prompts:
@@ -197,5 +197,3 @@ for a step-by-step guide.
 
 ### GITHUB_PAK Permissions
 ![GITHUB_PAK Permissions screenshot](assets/PAK_permissions.png)
-
-
