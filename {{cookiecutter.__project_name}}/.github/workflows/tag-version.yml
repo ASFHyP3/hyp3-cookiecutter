@@ -13,4 +13,4 @@ jobs:
       user: {{ cookiecutter.github_username }}
       email: {{ cookiecutter.github_email }}
     secrets:
-      USER_TOKEN: {{'${{ secrets.TOOLS_BOT_PAK }}'}}
+      USER_TOKEN: {{ cookiecutter.__user_github_token }}

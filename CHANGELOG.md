@@ -7,7 +7,10 @@ and this project adheres to [PEP 440](https://www.python.org/dev/peps/pep-0440/)
 and uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [0.4.1]
+## [0.5.0]
+### Added
+- Added a CLI option to specify the name of a user GitHub Token in the rendered plugin for the GitHub Actions workflows that require it.  
+- A GitHub Actions workflow that will ensure hyp3-cookiecutter renders.
 ### Fixed
 - Fixed project name variable error which prevented the cookiecutter from rendering.
 

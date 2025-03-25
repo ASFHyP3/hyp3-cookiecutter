@@ -1,0 +1,26 @@
+name: Render Cookiecutter
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4.2.2
+      with:
+        path: hyp3-cookiecutter
+
+    - name: Render Cookiecutter
+      uses: andrewthetechie/gha-cookiecutter@v1.3.2
+      with:
+        template: ./hyp3-cookiecutter
+        # Any values not filled in will be set to template's default
+        cookiecutterValues: '{
+            "github_username": "foo-bar",
+            "github_email": "foo@bar.com",
+            "process_type": "foo-bar"
+          }'
