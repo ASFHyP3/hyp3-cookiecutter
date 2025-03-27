@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [PEP 440](https://www.python.org/dev/peps/pep-0440/) 
 and uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [0.5.0]
+### Added
+- Added a CLI option to specify the name of a user GitHub Token in the rendered plugin for the GitHub Actions workflows that require it.  
+- A GitHub Actions workflow that will ensure hyp3-cookiecutter renders.
+### Fixed
+- Fixed project name variable error which prevented the cookiecutter from rendering.
+
 ## [0.4.0]
 ### Changed
 - In the generated project, ruff and mypy dependencies are now statically pinned and kept up to date with dependabot to prevent updates introducing unexpected static analysis failures  

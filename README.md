@@ -7,24 +7,43 @@ generate a new HyP3 Plugin.
 
 ### 1. Create the plugin with Cookiecutter
 
-To create a new plugin, you'll first need to run the cookicutter.
-From a terminal on your local development machine, navigate to where you'd like 
-to create the local copy of the plugin's repository. Then run cookiecutter and 
-follow the prompts:
+To create a new plugin, you'll first need to run [`cookiecutter`](https://cookiecutter.readthedocs.io/en/stable/), which you can install with [`conda`/`mamba`](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)
+(we recommend [MiniForge](https://conda-forge.org/download/)):
 
 ```bash
-python3 -m pip install cookiecutter
-cookiecutter https://github.com/ASFHyP3/hyp3-cookiecutter.git
+mamba install cookiecutter
 ```
 
-Now, you should have a `hyp3-<process>` directory which contains a minimal HyP3
-plugin.
+ or [`pip`](https://packaging.python.org/en/latest/tutorials/installing-packages/#use-pip-for-installing):
+
+```bash
+python -m pip install cookiecutter
+```
+
+Then, from a terminal on your local development machine, navigate to where you'd like
+to create the local copy of your new plugin's repository and run cookiecutter, following the prompts.
+
+For example, this may look like:
+
+```
+cookiecutter https://github.com/ASFHyP3/hyp3-cookiecutter.git
+  [1/7] github_username (username_for_github_actions): foo
+  [2/7] github_email (email_for@github_actions.com): foo@bar.com
+  [3/7] github_actions_token (FOO_PAK):
+  [4/7] process_type (RTC): foo-bar
+  [5/7] short_description (HyP3 plugin for foo-bar processing.):
+  [6/7] public_url (https://github.com/ASFHyP3/hyp3-foo-bar):
+  [7/7] copyright_year (2025):
+```
+
+> [!TIP]
+> The `github_*` prompts facilitate the CI/CD pipelines included in the cookiecutter. These can be for yourself, or a shared team "bot" user, and we'll set up a Personal Access Token in [Section 6](#6-create-a-personal-access-key-for-github-actions).
+
+Now, you should have a `hyp3-<process_type>` (`hyp3-foo-bar` in the example above) directory which contains a minimal HyP3 plugin.
 
 ### 2. Create a repository on GitHub
 
 Next, we'll need to create a new repository on [GitHub](https://github.com) for your plugin.
-Make sure to create your repository in the same user/organization account you set in the
-`<GITHUB_USERNAME>` field of the cookiecutter.
 
 Your repository name should be the same as the directory name for the plugin you created
 on your local develop machine. (e.g., `hyp3-<PROCESS_TYPE>`). For the description section,
@@ -136,8 +155,8 @@ article
 ### 6. Create a personal access key for GitHub Actions
 
 Some of the GitHub actions (`release.yml` and `tag-version.yml`) need extra permissions to work
-properly. These actions will attempt to use the `GITHUB_PAK` secret to assume a user profile
-with the needed permissions, so we'll need to create the permissions/secret.
+properly and will attempt to assume those permission via a repository secret named `<github_actions_token>`.
+So, if it doesn't already exist, we will need to  create the token.
 
 1. In your user/organization settings:
     * Click on Developer Settings
@@ -145,7 +164,7 @@ with the needed permissions, so we'll need to create the permissions/secret.
     * Click Tokens (classic)
     * Click Generate new token
     * Click Generate new token (classic)
-    * In the note section give the token a name (e.g., `GITHUB_PAK`)
+    * In the note section give the token a name (e.g., `<GH_ACCOUNT_NAME>_PAK`)
     * Check the boxes for:
         * repo
         * workflow
@@ -158,7 +177,7 @@ with the needed permissions, so we'll need to create the permissions/secret.
     * Click on Secrets and variables
     * Click on Actions
     * Click on New repository Secret
-    * Name your secret `GITHUB_PAK`
+    * Name your secret `<GH_ACCOUNT_NAME>_PAK`
     * Paste in the access token you save from the last step
     * Click Add secret
 
@@ -197,5 +216,3 @@ for a step-by-step guide.
 
 ### GITHUB_PAK Permissions
 ![GITHUB_PAK Permissions screenshot](assets/PAK_permissions.png)
-
-

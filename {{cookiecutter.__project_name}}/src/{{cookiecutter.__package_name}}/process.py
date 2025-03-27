@@ -1,4 +1,4 @@
-"""{{cookiecutter.process_type}} processing."""
+"""{{ cookiecutter.process_type }} processing."""
 
 import logging
 from pathlib import Path
@@ -7,7 +7,7 @@ from pathlib import Path
 log = logging.getLogger(__name__)
 
 
-def {{cookiecutter.__process_name}}(greeting: str = 'Hello world!') -> Path:
+def {{ cookiecutter.__process_name }}(greeting: str = 'Hello world!') -> Path:
     """Create a greeting product.
 
     Args:
