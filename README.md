@@ -194,15 +194,9 @@ So, if it doesn't already exist, we will need to  create the token.
 This access token will regularly expire unless you set them to last forever (which we don't recommend)
 so make sure to keep the token current and the secret up to date!
 
-### 7. Restart the GitHub Actions
+### 7. Make HyP3 plugin container public
 
-Now you're all setup! You should be able to navigate to your repository "Actions",
-restart the failed Workflows on `develop`, and watch it create minimal HyP3 plugin 
-container for your process.
-
-### 8. Make HyP3 plugin container public
-
-Once the Actions have successfully run, a containerized version of your plugin will be
+Once the "Test and build" GitHub Actions workflow has successfully run, a containerized version of your plugin will be
 available in the GitHub Container Registry (GHCR). You can find this plugin in the "Packages"
 section of your GitHub user/organization account. You can also `pull` it to your local
 machine for use using the command:
@@ -212,6 +206,13 @@ machine for use using the command:
 GHCR containers are private by default. You'll need to manually change the visibility of
 your container to "Public" so that HyP3 can access it. See this [GitHub Documentation](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility#configuring-visibility-of-packages-for-your-personal-account)
 for a step-by-step guide.
+
+### 8. Initial release
+
+After you've developed the basic functionality of your plugin,
+perform an initial release by opening and merging a PR from `develop` to `main`.
+This should create a `v0.1.0` release, assuming you did not change the `[0.1.0]` heading
+in the [CHANGELOG](./{{cookiecutter.__project_name}}/CHANGELOG.md).
 
 ## Screenshots
 
