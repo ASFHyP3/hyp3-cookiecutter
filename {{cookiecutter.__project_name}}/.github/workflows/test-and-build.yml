@@ -14,6 +14,8 @@ jobs:
   call-pytest-workflow:
     # Docs: https://github.com/ASFHyP3/actions
     uses: ASFHyP3/actions/.github/workflows/reusable-pytest.yml@v0.18.0
+    permissions:
+      contents: read
     with:
       local_package_name: {{ cookiecutter.__package_name }}
       python_versions: >-
@@ -22,15 +24,22 @@ jobs:
   call-version-info-workflow:
     # Docs: https://github.com/ASFHyP3/actions
     uses: ASFHyP3/actions/.github/workflows/reusable-version-info.yml@v0.18.0
+    permissions:
+      contents: read
+    with:
+      python_version: '3.10'
 
   call-docker-ghcr-workflow:
     needs: call-version-info-workflow
     # Docs: https://github.com/ASFHyP3/actions
     uses: ASFHyP3/actions/.github/workflows/reusable-docker-ghcr.yml@v0.18.0
+    permissions:
+      contents: read
+      packages: write
     with:
       version_tag: {{ '${{ needs.call-version-info-workflow.outputs.version_tag }}' }}
       release_branch: main
       develop_branch: develop
-      user: {{ cookiecutter.github_username }}
+      user: {{ '${{ github.actor }}' }}
     secrets:
       USER_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}

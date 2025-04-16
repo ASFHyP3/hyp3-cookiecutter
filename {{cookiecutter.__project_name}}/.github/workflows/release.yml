@@ -9,10 +9,11 @@ jobs:
   call-release-workflow:
     # Docs: https://github.com/ASFHyP3/actions
     uses: ASFHyP3/actions/.github/workflows/reusable-release.yml@v0.18.0
+    permissions: {}
     with:
       release_prefix: {{ cookiecutter.__project_title }}
       release_branch: main
       develop_branch: develop
-      sync_pr_label: actions-bot
+      sync_pr_label: {{ cookiecutter.github_username }}
     secrets:
       USER_TOKEN: {{ cookiecutter.__user_github_token }}
