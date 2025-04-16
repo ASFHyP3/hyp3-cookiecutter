@@ -129,7 +129,7 @@ Go to your repository in GitHub and click "Settings", then:
      add the user under "Direct access" with `Role: write`.
      For https://github.com/ASFHyP3 repos, you should add the `ASFHyP3/automation` team here,
      which includes the `tools-bot` user.
-3. In "Branches", add a branch protection rule for:
+3. In "Branches", add a "classic branch protection rule" for:
    * `main`:
      * set "Branch name pattern" to `main`
      * enable "Require a pull request before merging"
