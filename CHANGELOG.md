@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [PEP 440](https://www.python.org/dev/peps/pep-0440/) 
 and uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1]
+
+### Added
+- Added `permissions` field for every GitHub Actions job in the cookiecutter template, to address https://github.com/ASFHyP3/actions/issues/220
+
+### Changed
+- Upgraded `ASFHyP3/actions` reusable actions to `v0.18.1`.
+
+### Removed
+- Removed the `sync_pr_label` input from the call to `reusable-release.yml`, so that the default value will be used.
+
+### Fixed
+- Updated README instructions for creating a HyP3 plugin. In particular, added instructions for granting the GitHub user account (e.g. `tools-bot` for `ASFHyP3` repos) sufficient permissions for performing releases.
+- The `python_version` parameter is now provided to `reusable-version-info.yml` in the `test-and-build.yml` template.
+- Changed the value of the `user` parameter for `reusable-docker-ghcr.yml` from `{{ cookiecutter.github_username }}` to `{{ '${{ github.actor }}' }}`, to match the example given by the [actions README](https://github.com/ASFHyP3/actions/blob/v0.18.0/README.md#reusable-docker-ghcryml).
 
 ## [0.5.0]
 ### Added
