@@ -14,6 +14,5 @@ jobs:
       release_prefix: {{ cookiecutter.__project_title }}
       release_branch: main
       develop_branch: develop
-      sync_pr_label: {{ cookiecutter.github_username }}
     secrets:
       USER_TOKEN: {{ cookiecutter.__user_github_token }}
