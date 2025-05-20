@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main
-      - develop
+    tags:
+      - 'v*'
   pull_request:
     branches:
       - main
@@ -38,8 +39,6 @@ jobs:
       packages: write
     with:
       version_tag: {{ '${{ needs.call-version-info-workflow.outputs.version_tag }}' }}
-      release_branch: main
-      develop_branch: develop
       user: {{ '${{ github.actor }}' }}
     secrets:
       USER_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}
