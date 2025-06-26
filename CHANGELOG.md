@@ -12,9 +12,6 @@ and uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 - The `test-and-build.yml` workflow has been split into a `test.yml` workflow and a `build.yml` workflow.
 
-### Fixed
-- Pytest and the Docker build will be run on pushes to `develop` now.
-
 ## [0.5.1]
 
 ### Added
